@@ -1,13 +1,17 @@
 /* layout */
-#header {height: 327px;
-  background: url(../img/banner.jpg) no-repeat; background-size: cover;}
+#header { background: url(../img/banner.jpg) no-repeat; background-size: cover;}
+#nav {}
+
+/* clearfix */
+.clearfix:after { content: ''; display: table; clear: both }
+
 
 /* container */
 .container{width:1200px; margin: 0 auto; /*background: rgba(0,0,0,0.3);*/}
 
 /* quick */
 .quick {text-align: right;}
-.quick a {display: inline-block; color: #000; padding: 5px 0 0 10px;
+.quick a {display: inline-block; color: #000; padding: 5px 0 5px 10px;
 transition: all 0.5s ease; text-decoration: none;}
 .quick a:hover { color: #ccc;}
 
@@ -23,14 +27,29 @@ transition: all 0.5s ease; text-decoration: none;}
 .icon-font li a .tool{opacity: 0; font-size: 12px; position: absolute; left: 50%; top: -50px; background-color: #3192bf; padding: 4px 10px; transform: translateX(-50%); border-radius: 6px 0; transition: all 0.3s ease-in-out}
 .icon-font li a:hover .tool {opacity: 1; top: -40px;}
 .icon-font li a .tool:before{content: ""; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); border-top: 5px solid #3192bf;border-left: 5px solid transparent; border-right: 5px solid transparent;}
+
+/* nav */
+.nav {padding: 30px 0; }
+.nav h2 {font-size: 16px; color: #25a2b0; padding-bottom: 5px;}
+.nav li { position: relative; float: left; width: 20%; padding-left: 8px; box-sizing: border-box;}
+.nav li:before {content: ''; width: 3px; height: 3px; background-color: #25a2d0; position: absolute; left: 0; top: 8px; border-radius: 50%;}
+.nav li a {padding: 3px; border-radius: 2px; transition: all 0.1s ease;}
+.nav li a:hover{background-color: #25a2d0; color: #fff;}
+
+.tit { position: relative; text-align: center;}
+.tit h2 {font-size: 39px; color: #0093bd; font-family: 'Nanum Brush Script';}
+.tit .btn { position: absolute; right: 0; top: 0;}
+.tit .btn a {width: 60px; height: 60px; background-color: #4a9abf; font-size: 35px; border-radius: 50%; display: block; color: #fff; line-height: 55px;}
+
 /* mediaquery */
 @media (max-width: 1280px) {
   .container{width: 100%;}
   .row{padding: 0 10px;}
+  .tit .btn {margin-right: 15px;}
 }
 
 @media (max-width: 1024px) {
-
+  .nav li{width: 25%;}
 }
 
 @media (max-width: 960px) {
@@ -38,11 +57,11 @@ transition: all 0.5s ease; text-decoration: none;}
 }
 
 @media (max-width: 768px) {
-
+  .nav li{width: 33.33333%;}
 }
 
 @media (max-width: 600px) {
-
+  .title, .icon-font, .nav, .tit .btn{display: none;}
 }
 
 @media (max-width: 480px) {
