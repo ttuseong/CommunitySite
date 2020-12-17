@@ -76,13 +76,33 @@ transition: all 0.5s ease; text-decoration: none;}
 .menu li a i {position: absolute; right: 10px; top: 50%; transform: translateY(-50%);}
 
 /* notice */
-.notice { position: relative;}
+.notice { position: relative; margin-bottom: 10px;}
+.notice:last-child { margin: 0; }
 .notice h5 { font-size: 14px; color: #2f7fa6}
 .notice li { position: relative; padding-left: 8px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .notice li::before{ content: ''; width: 3px; height: 3px; background-color: #449ce2; position: absolute; left: 0; top: 50%; transform: translateY(-50%); border-radius: 50%;}
 .notice .more { position: absolute; right: 0; top: 0; text-transform: uppercase; font-size: 9px;}
 .notice .more { color: #878787 }
 
+/* blog */
+.blog {}
+.blog h5 { font-size: 14px; color: #2f7fa6; padding-bottom: 3px; }
+.blog .blog-img { position: relative; display: block; color: #fff; margin-bottom: 3px; }
+.blog .blog-img::after { transition: background 0.3s ease-in-out; content: ""; position: absolute; left: 0; top: 0; display: block; background: rgb(0,0,0,0); width: 100%; height: 100%; z-index: 50;}
+.blog .blog-img:hover::after { background: rgb(0,0,0,0.4) }
+.blog .blog-img:hover em { opacity: 1;}
+.blog .blog-img img { display: block;; }
+.blog .blog-img em { transition: opacity 0.3s ease-in-out;  opacity: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 100;}
+
+/* blog2 */
+.blog2 h5 { font-size: 14px; color: #2f7fa6; padding-bottom: 3px; }
+.blog2 .blog-img { overflow: hidden; position: relative; display: block; color: #fff; }
+.blog2 .blog-img::after{ transition: background-color 0.3s ease-in-out;  content: ""; z-index: 50; width: 100%; height: 100%; display: block; background-color: rgba(0,0,0,0); position: absolute; left: 0; top: 0;}
+.blog2 .blog-img:hover::after{ background-color: rgba(0,0,0,0.4); }
+.blog2 .blog-img img { display: block; transform: scale(1, 1); transition: transform 0.3s ease-in-out; }
+.blog2 .blog-img:hover img { transform: scale(1.5, 1.5); }
+.blog2 .blog-img em { font-size: 0;  opacity: 0; transition: all 0.3s ease-in-out; z-index: 100; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
+.blog2 .blog-img:hover em { opacity: 1; font-size: 16px; }
 /* footer */
 .footer {}
 
