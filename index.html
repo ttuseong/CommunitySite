@@ -7,12 +7,16 @@
 
     <!-- style -->
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.css">
+    <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- html5shiv -->
-    <script type="text/javascript" src="assets/js/html5shiv.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script></script>
     <script src="https://kit.fontawesome.com/ff5ee53d46.js" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="assets/js/html5shiv.min.js"></script>
+    <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
 
     <!-- 웹폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -172,7 +176,7 @@
               <h5>Figure</h5>
               <figure>
                 <a href="#" class="blog-img">
-                  <img src="assets/img/img1.png" alt="">
+                  <img src="assets/img/img1.jpg" alt="">
                   <em>Blog</em>
                 </a>
 
@@ -189,7 +193,7 @@
               <h5>Figure</h5>
               <figure>
                 <a href="#" class="blog-img">
-                  <img src="assets/img/img2.png" alt="">
+                  <img src="assets/img/img2.jpg" alt="">
                   <em>Blog</em>
                 </a>
 
@@ -209,9 +213,15 @@
         <section id="cont-center">
           <h3 class="ir">cont-center</h3>
           <article class="cbox column4">
-            <h4 class="cbox-title">Title</h4>
+            <h4 class="cbox-title">Gallery</h4>
             <p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
-            <!--  -->
+            <div class="gallery ">
+              <div id="owl-demo" class="owl-carousel owl-theme">
+                <div class="item"><img src="assets/img/img1.jpg" alt="The Last of us"></div>
+                <div class="item"><img src="assets/img/img2.jpg" alt="GTA V"></div>
+              </div>
+            </div>
+            <!-- Gallery -->
           </article>
           <!-- column4 -->
           <article class="cbox column5">
@@ -264,4 +274,6 @@
       </div>
     </footer>
   </body>
+  <script type="text/javascript" src="assets/js/custom.js"></script>
+
 </html>

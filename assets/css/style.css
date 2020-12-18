@@ -103,6 +103,8 @@ transition: all 0.5s ease; text-decoration: none;}
 .blog2 .blog-img:hover img { transform: scale(1.5, 1.5); }
 .blog2 .blog-img em { font-size: 0;  opacity: 0; transition: all 0.3s ease-in-out; z-index: 100; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);}
 .blog2 .blog-img:hover em { opacity: 1; font-size: 16px; }
+
+
 /* footer */
 .footer {}
 
