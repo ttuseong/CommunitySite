@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/css/owl.theme.css">
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/list.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script></script>
     <script src="https://kit.fontawesome.com/ff5ee53d46.js" crossorigin="anonymous"></script>
@@ -21,7 +21,6 @@
     <!-- 웹폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-
   </head>
   <body>
     <header id="header">
@@ -67,7 +66,7 @@
     <section id="contents">
       <h2 class="ir">반응형 사이트 컨텐츠</h2>
       <div class="container">
-        <section id="cont-left">
+        <section class="clearfix" id="cont-left">
           <h3 class="ir">cont-left</h3>
           <article class="cbox column1">
             <h4 class="cbox-title">MENU</h4>
@@ -161,48 +160,96 @@
           <article class="cbox column4">
             <h4 class="cbox-title">Gallery</h4>
             <p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
-            <div class="gallery ">
-              <div id="owl-demo" class="owl-carousel owl-theme">
-                <div class="item"><img src="assets/img/img1.jpg" alt="The Last of us"></div>
-                <div class="item"><img src="assets/img/img2.jpg" alt="GTA V"></div>
-              </div>
-            </div>
+            <div id="board">
+      <div id="list">
+        <form action="" method="">
+          <div class="form-group text-right">
+            <input type="text">
+            <button type="submit" id=btn_search>검색</button>
+          </div>
+        </form>
+        <table >
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>글쓴이</th>
+              <th>조회수</th>
+              <th>작성일</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>123</td>
+              <td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+              <td>정우성</td>
+              <td>1232</td>
+              <td>2020-12-23</td>
+              <td><a href="">[삭제]</a></td>
+            </tr>
+            <tr>
+              <td>123</td>
+              <td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+              <td>정우성</td>
+              <td>1232</td>
+              <td>2020-12-23</td>
+              <td><a href="">[삭제]</a></td>
+            </tr>
+            <tr>
+              <td>123</td>
+              <td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+              <td>정우성</td>
+              <td>1232</td>
+              <td>2020-12-23</td>
+              <td><a href="">[삭제]</a></td>
+            </tr>
+            <tr>
+              <td>123</td>
+              <td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+              <td>정우성</td>
+              <td>1232</td>
+              <td>2020-12-23</td>
+              <td><a href="">[삭제]</a></td>
+            </tr>
+            <tr class="last">
+              <td>123</td>
+              <td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
+              <td>정우성</td>
+              <td>1232</td>
+              <td>2020-12-23</td>
+              <td><a href="">[삭제]</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div id="paging">
+          <ul>
+            <li><a href="">◀</a></li>
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li class="active"><a href="">5</a></li>
+            <li><a href="">6</a></li>
+            <li><a href="">7</a></li>
+            <li><a href="">8</a></li>
+            <li><a href="">9</a></li>
+            <li><a href="">10</a></li>
+            <li><a href="">▶</a></li>
+          </ul>
+
+
+          <div class="clear"></div>
+        </div>
+        <a id="btn_write" href="">글쓰기</a>
+
+      </div>
+      <!-- //list -->
+    </div>
             <!-- Gallery -->
           </article>
           <!-- column4 -->
-          <article class="cbox column5">
-            <h4 class="cbox-title">Square</h4>
-            <p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
-            <div class="square clearfix" id="lightgallery">
-              <a href="assets/img/img1.jpg"><img src="assets/img/img1.jpg" alt=""></a>
-              <a href="assets/img/img2.jpg"><img src="assets/img/img2.jpg" alt=""></a>
-              <a href="assets/img/img3.jpg"><img src="assets/img/img3.jpg" alt=""></a>
-              <a href="assets/img/img4.jpg"><img src="assets/img/img4.jpg" alt=""></a>
-              <a href="assets/img/img2.jpg"><img src="assets/img/img2.jpg" alt=""></a>
-              <a href="assets/img/img1.jpg"><img src="assets/img/img1.jpg" alt=""></a>
-              <a href="assets/img/img2.jpg"><img src="assets/img/img2.jpg" alt=""></a>
-              <a href="assets/img/img3.jpg"><img src="assets/img/img3.jpg" alt=""></a>
-              <a href="assets/img/img4.jpg"><img src="assets/img/img4.jpg" alt=""></a>
-              <a href="assets/img/img2.jpg"><img src="assets/img/img2.jpg" alt=""></a>
-            </div>
-
-            <!-- Square -->
-          </article>
-          <!-- column5 -->
-          <article class="cbox column6">
-            <h4 class="cbox-title">Video</h4>
-            <p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
-            <div class="video">
-              <!-- <video controls="controls" autoplay="autoplay" loop="loop">
-                <source src="assets/video/video.mp4" type="video/mp4">
-              </video> -->
-              <div class="video-container">
-                <iframe class="iframe" src="https://www.youtube.com/embed/8kuNnuMYsFA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-              </div>
-            </div>
-            <!-- video -->
-          </article>
-          <!-- column6 -->
         </section>
         <!-- cont-center -->
 

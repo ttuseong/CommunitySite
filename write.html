@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/css/owl.theme.css">
     <link rel="stylesheet" href="assets/css/owl.transitions.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/write.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script></script>
     <script src="https://kit.fontawesome.com/ff5ee53d46.js" crossorigin="anonymous"></script>
@@ -21,7 +21,6 @@
     <!-- 웹폰트 -->
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-
   </head>
   <body>
     <header id="header">
@@ -161,48 +160,34 @@
           <article class="cbox column4">
             <h4 class="cbox-title">Gallery</h4>
             <p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
-            <div class="gallery ">
-              <div id="owl-demo" class="owl-carousel owl-theme">
-                <div class="item"><img src="assets/img/img1.jpg" alt="The Last of us"></div>
-                <div class="item"><img src="assets/img/img2.jpg" alt="GTA V"></div>
-              </div>
+            <div id="board">
+      <div id="writeForm">
+        <form action="#" method="get">
+          <!-- 제목 -->
+          <div class="form-group">
+            <label class="form-text" for="txt-title">제목</label>
+            <input type="text" id="txt-title" name="" value="" placeholder="제목을 입력해 주세요">
+          </div>
+
+          <!-- 내용 -->
+          <div class="form-group">
+            <textarea id="txt-content"></textarea>
+          </div>
+
+          <a id="btn_cancel" href="">취소</a>
+          <button id="btn_add" type="submit" >등록</button>
+
+        </form>
+                <!-- //form -->
+      </div>
+      <!-- //writeForm -->
+    </div>
+    <!-- //board -->
             </div>
             <!-- Gallery -->
           </article>
           <!-- column4 -->
-          <article class="cbox column5">
-            <h4 class="cbox-title">Square</h4>
-            <p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
-            <div class="square clearfix" id="lightgallery">
-              <a href="assets/img/img1.jpg"><img src="assets/img/img1.jpg" alt=""></a>
-              <a href="assets/img/img2.jpg"><img src="assets/img/img2.jpg" alt=""></a>
-              <a href="assets/img/img3.jpg"><img src="assets/img/img3.jpg" alt=""></a>
-              <a href="assets/img/img4.jpg"><img src="assets/img/img4.jpg" alt=""></a>
-              <a href="assets/img/img2.jpg"><img src="assets/img/img2.jpg" alt=""></a>
-              <a href="assets/img/img1.jpg"><img src="assets/img/img1.jpg" alt=""></a>
-              <a href="assets/img/img2.jpg"><img src="assets/img/img2.jpg" alt=""></a>
-              <a href="assets/img/img3.jpg"><img src="assets/img/img3.jpg" alt=""></a>
-              <a href="assets/img/img4.jpg"><img src="assets/img/img4.jpg" alt=""></a>
-              <a href="assets/img/img2.jpg"><img src="assets/img/img2.jpg" alt=""></a>
-            </div>
 
-            <!-- Square -->
-          </article>
-          <!-- column5 -->
-          <article class="cbox column6">
-            <h4 class="cbox-title">Video</h4>
-            <p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
-            <div class="video">
-              <!-- <video controls="controls" autoplay="autoplay" loop="loop">
-                <source src="assets/video/video.mp4" type="video/mp4">
-              </video> -->
-              <div class="video-container">
-                <iframe class="iframe" src="https://www.youtube.com/embed/8kuNnuMYsFA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-              </div>
-            </div>
-            <!-- video -->
-          </article>
-          <!-- column6 -->
         </section>
         <!-- cont-center -->
 
