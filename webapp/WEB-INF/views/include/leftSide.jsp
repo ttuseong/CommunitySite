@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <section id="cont-left">
 	<h3 class="ir">cont-left</h3>
 	<article class="cbox column1">
@@ -7,12 +8,12 @@
 		<p class="cbox-desc">직업별 정보 공유</p>
 		<div class="menu">
 			<ul>
-				<li><a href="#">바드<i class="fas fa-angle-double-right"></i></a></li>
-				<li><a href="#">서머너<i class="fas fa-angle-double-right"></i></a></li>
-				<li><a href="#">아르카나<i class="fas fa-angle-double-right"></i></a></li>
-				<li><a href="#">데빌헌터<i class="fas fa-angle-double-right"></i></a></li>
-				<li><a href="#">워로드<i class="fas fa-angle-double-right"></i></a></li>
-				<li><a href="#">홀리나이트<i class="fas fa-angle-double-right"></i></a></li>
+				<c:forEach items="${map.menuList}" var="vo">
+					<c:if test="${vo.boardType == 0 }">
+						<li><a href="#">${vo.boardName}<i
+								class="fas fa-angle-double-right"></i></a></li>
+					</c:if>
+				</c:forEach>
 			</ul>
 		</div>
 		<!--menu-->
@@ -22,31 +23,26 @@
 		<h4 class="cbox-title">커뮤니티 게시판</h4>
 		<p class="cbox-desc">자유로운 소통 공간</p>
 
-		<div class="notice">
-			<h5>자유 게시판</h5>
-			<ul>
-				<li><a href="#">백엔드와 관련된 정보 공유 및 교육 정보 공유</a></li>
-				<li><a href="#">백엔드와 관련된 정보 공유 및 교육 정보 공유</a></li>
-				<li><a href="#">백엔드와 관련된 정보 공유 및 교육 정보 공유</a></li>
-				<li><a href="#">백엔드와 관련된 정보 공유 및 교육 정보 공유</a></li>
-			</ul>
-			<span class="more"><a href="#">more <i
-					class="fas fa-arrow-alt-circle-right"></i></a></span>
-		</div>
-		<!-- notice  -->
+		<c:forEach items="${map.menuList }" var="vo">
+			<c:if test="${vo.boardType == 1 }">
+				<div class="notice">
+					<h5>${vo.boardName }</h5>
+					<ul>
+						<c:forEach items="${map.contentMap }" var="mapVo">
+							<c:if test="${mapVo.key == vo.boardNo }">
+								<c:forEach items="${mapVo.value }" var="content">
+									<li><a href="#">${content.boardTitle }</a></li>
+								</c:forEach>
+							</c:if>
+						</c:forEach>
+					</ul>
+					<span class="more"><a href="#">more <i
+							class="fas fa-arrow-alt-circle-right"></i></a></span>
+				</div>
+				<!-- notice  -->
+			</c:if>
+		</c:forEach>
 
-		<div class="notice">
-			<h5>이미지 게시판</h5>
-			<ul>
-				<li><a href="#">백엔드와 관련된 정보 공유 및 교육 정보 공유</a></li>
-				<li><a href="#">백엔드와 관련된 정보 공유 및 교육 정보 공유</a></li>
-				<li><a href="#">백엔드와 관련된 정보 공유 및 교육 정보 공유</a></li>
-				<li><a href="#">백엔드와 관련된 정보 공유 및 교육 정보 공유</a></li>
-			</ul>
-			<span class="more"><a href="#">more <i
-					class="fas fa-arrow-alt-circle-right"></i></a></span>
-		</div>
-		<!-- notice  -->
 	</article>
 	<!-- column2 -->
 	<article class="cbox column3">

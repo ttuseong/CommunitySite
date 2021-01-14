@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="main">
+	<select id="menuList" resultType="com.project_1.vo.BoardVo">
+		<![CDATA[
+			select 
+			    *
+			from 
+			    board_name
+		]]>
+	</select>
+	
+	<select id="communityBoardList" resultType="int">
+		<![CDATA[
+			SELECT
+			    boardNo
+			FROM
+			    board_name
+			where
+			    boardType=1
+		]]>
+	</select>
+	
+	<select id="communityContentList" parameterType="int" resultType="com.project_1.vo.ContentVo">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    (SELECT
+			        contentNo,
+			        boardNo,
+			        boardTitle
+			    FROM
+			        board_content
+			    where
+			        boardNo = #{boardNo}
+			    order by boardtime desc)bc
+			where
+			    rownum < 3
+		]]>
+	</select>
+</mapper>

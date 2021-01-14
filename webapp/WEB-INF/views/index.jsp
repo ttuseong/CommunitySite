@@ -41,8 +41,8 @@
             <p class="cbox-desc">현재 진행 중인 이벤트입니다.</p>
             <div class="gallery ">
               <div id="owl-demo" class="owl-carousel owl-theme">
-                <div class="item"><img src="${pageContext.request.contextPath}/assets/img/img1.jpg" alt="The Last of us"></div>
-                <div class="item"><img src="${pageContext.request.contextPath}/assets/img/img2.jpg" alt="GTA V"></div>
+                <div class="item"><img src="${pageContext.request.contextPath}/assets/img/발탄.jpg" alt="The Last of us"></div>
+                <div class="item"><img src="${pageContext.request.contextPath}/assets/img/건슬.jpg" alt="GTA V"></div>
               </div>
             </div>
             <!-- Gallery -->
@@ -93,11 +93,5 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/owl.carousel.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/lightgallery.min.js"></script>
-  <script type="text/javascript">
-      $(document).ready(function() {
-          $("#lightgallery").lightGallery();
-          console.log(${pageContext.request.contextPath});
-      });
-  </script>
-
+  
 </html>
