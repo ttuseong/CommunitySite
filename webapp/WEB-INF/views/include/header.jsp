@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="title">
-				<p>로스트 아크 커뮤니티</p>
+				<a href="${pageContext.request.contextPath}/"><p>로스트 아크 커뮤니티</p></a>
 				<!-- <h1><a href="#">깃허브</a></h1> -->
 			</div>
 			<!-- title -->

@@ -10,7 +10,7 @@
 			<ul>
 				<c:forEach items="${map.menuList}" var="vo">
 					<c:if test="${vo.boardType == 0 }">
-						<li><a href="#">${vo.boardName}<i
+						<li><a href="${pageContext.request.contextPath}/list?boardNo=${vo.boardNo}">${vo.boardName}<i
 								class="fas fa-angle-double-right"></i></a></li>
 					</c:if>
 				</c:forEach>
@@ -31,12 +31,12 @@
 						<c:forEach items="${map.contentMap }" var="mapVo">
 							<c:if test="${mapVo.key == vo.boardNo }">
 								<c:forEach items="${mapVo.value }" var="content">
-									<li><a href="#">${content.boardTitle }</a></li>
+									<li><a href="${pageContext.request.contextPath}/read?contentNo=${content.contentNo}">${content.boardTitle }</a></li>
 								</c:forEach>
 							</c:if>
 						</c:forEach>
 					</ul>
-					<span class="more"><a href="#">more <i
+					<span class="more"><a href="${pageContext.request.contextPath}/list?boardNo=${vo.boardNo}">more <i
 							class="fas fa-arrow-alt-circle-right"></i></a></span>
 				</div>
 				<!-- notice  -->
