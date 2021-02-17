@@ -40,4 +40,18 @@
 			    rownum < 3
 		]]>
 	</select>
+	
+	<select id="contentList" parameterType="int" resultType="com.project_1.vo.ContentVo">
+		<![CDATA[
+			SELECT
+			    contentNo,
+			    boardtitle,
+			    TO_CHAR(boardTime,'YYYY-MM-DD') boardTime
+			FROM
+			    board_content
+			where
+			    boardNo = #{boardNo}
+			order by contentno desc
+		]]>
+	</select>
 </mapper>

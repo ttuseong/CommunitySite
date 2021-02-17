@@ -30,11 +30,11 @@ public class MainController {
 
 	//게시글 목록
 	@RequestMapping("list")
-	public String list(@RequestParam("boardNo") int boardNo, HttpSession session) {
-		System.out.println(boardNo);
+	public String list(Model model, @RequestParam("boardNo") int boardNo, HttpSession session) {
 		checkMenuCookie(session);
-
-
+		
+		model.addAttribute("list", mainService.getContentList(boardNo));
+		
 		return "list";
 	}
 
@@ -49,9 +49,7 @@ public class MainController {
 	//게시글 쓰기
 	@RequestMapping("write")
 	public String write(HttpSession session) {
-		System.out.println("글 쓰기");
 		checkMenuCookie(session);
-
 
 		return "write";
 	}
@@ -59,11 +57,7 @@ public class MainController {
 	//게시판 내용을 한번만 가져오고 메뉴 이동할 때는 미리 저장된 값을 가져오게 설정
 	public void checkMenuCookie(HttpSession session) {
 		if(session.getAttribute("menu") == null) {
-			System.out.println("session이 없는 경우");
 			session.setAttribute("menu", mainService.getContent());
-		} else {
-			System.out.println("session이 있는 경우");
-		}
-		
+		}	
 	}
 }

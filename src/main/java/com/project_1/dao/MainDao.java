@@ -25,4 +25,8 @@ public class MainDao {
 	public List<ContentVo> getCommunityContentList(int n){
 		return sqlSession.selectList("main.communityContentList", n);
 	}
+	
+	public List<ContentVo> getContentList(int boardNo) {
+		return sqlSession.selectList("main.contentList", boardNo);
+	}
 }
