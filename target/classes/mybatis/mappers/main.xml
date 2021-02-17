@@ -41,17 +41,41 @@
 		]]>
 	</select>
 	
-	<select id="contentList" parameterType="int" resultType="com.project_1.vo.ContentVo">
+	<select id="countContent" parameterType="int" resultType="int">
 		<![CDATA[
 			SELECT
-			    contentNo,
-			    boardtitle,
-			    TO_CHAR(boardTime,'YYYY-MM-DD') boardTime
+			    count(contentNo)
 			FROM
 			    board_content
 			where
 			    boardNo = #{boardNo}
-			order by contentno desc
+		]]>
+	</select>
+	
+	<select id="contentList" parameterType="map" resultType="com.project_1.vo.ContentVo">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    (SELECT
+			        rownum rw,
+			        contentNo,
+			        boardTitle,
+			        boardTime
+			    FROM
+			        (SELECT
+			            contentNo,
+			            boardtitle,
+			            TO_CHAR(boardTime,'YYYY-MM-DD') boardTime
+			        FROM
+			            board_content
+			        where
+			            boardNo = #{boardNo}
+			        order by contentno desc))
+			where
+			    rw >= #{startPage}
+			and
+			    rw <= #{endPage}
 		]]>
 	</select>
 </mapper>

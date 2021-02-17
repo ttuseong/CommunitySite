@@ -17,7 +17,7 @@ public class MainService {
 	MainDao mainDao;
 	
 	//모든 게시판을 가져오기 
-	public Map<String, Object> getContent(){
+	public Map<String, Object> getBoard(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("menuList", getMenuList());
@@ -51,8 +51,30 @@ public class MainService {
 		return contentMap;
 	}
 	
+	//
+	public Map<String, Object> getContent(int boardNo, int cntPage){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("page", Math.ceil(countContent(boardNo)/10.0));
+		map.put("list", getContentList(boardNo, cntPage));
+		map.put("cntPage", cntPage);
+		map.put("boardNo", boardNo);
+		
+		return map;
+	}
+	
+	//클릭한 게시판의 게시글 수를 가져오는 역할
+	public int countContent(int boardNo) {
+		return mainDao.countContent(boardNo);
+	}
+	
 	//클릭한 게시판의 게시글을 가져오는 역할
-	public List<ContentVo> getContentList(int boardNo) {
-		return mainDao.getContentList(boardNo);
+	public List<ContentVo> getContentList(int boardNo, int cntPage) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardNo", boardNo);
+		map.put("startPage", (cntPage - 1) * 10 + 1);
+		map.put("endPage", cntPage * 10);
+		
+		return mainDao.getContentList(map);
 	}
 }

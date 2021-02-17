@@ -1,10 +1,5 @@
 package com.project_1.controller;
 
-import java.util.Map;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +25,11 @@ public class MainController {
 
 	//게시글 목록
 	@RequestMapping("list")
-	public String list(Model model, @RequestParam("boardNo") int boardNo, HttpSession session) {
+	public String list(Model model, @RequestParam("boardNo") int boardNo, HttpSession session,
+			@RequestParam(value="cntPage", required=false, defaultValue="1") int cntPage) {
 		checkMenuCookie(session);
 		
-		model.addAttribute("list", mainService.getContentList(boardNo));
+		model.addAttribute("listMap", mainService.getContent(boardNo, cntPage));
 		
 		return "list";
 	}
@@ -57,7 +53,7 @@ public class MainController {
 	//게시판 내용을 한번만 가져오고 메뉴 이동할 때는 미리 저장된 값을 가져오게 설정
 	public void checkMenuCookie(HttpSession session) {
 		if(session.getAttribute("menu") == null) {
-			session.setAttribute("menu", mainService.getContent());
+			session.setAttribute("menu", mainService.getBoard());
 		}	
 	}
 }

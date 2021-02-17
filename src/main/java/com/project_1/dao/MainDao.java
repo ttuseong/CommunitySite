@@ -1,6 +1,7 @@
 package com.project_1.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,11 @@ public class MainDao {
 		return sqlSession.selectList("main.communityContentList", n);
 	}
 	
-	public List<ContentVo> getContentList(int boardNo) {
-		return sqlSession.selectList("main.contentList", boardNo);
+	public int countContent(int boardNo) {
+		return sqlSession.selectOne("main.countContent", boardNo);
+	}
+	
+	public List<ContentVo> getContentList(Map<String, Object> map) {
+		return sqlSession.selectList("main.contentList", map);
 	}
 }

@@ -71,7 +71,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${list }" var="listVo">
+									<c:forEach items="${listMap.list }" var="listVo">
 										<tr>
 											<td>${listVo.contentNo }</td>
 											<td class="text-left"><a href="#">${listVo.boardTitle}</a></td>
@@ -84,18 +84,21 @@
 
 							<div id="paging">
 								<ul>
-									<li><a href="">◀</a></li>
-									<li><a href="">1</a></li>
-									<li><a href="">2</a></li>
-									<li><a href="">3</a></li>
-									<li><a href="">4</a></li>
-									<li class="active"><a href="">5</a></li>
-									<li><a href="">6</a></li>
-									<li><a href="">7</a></li>
-									<li><a href="">8</a></li>
-									<li><a href="">9</a></li>
-									<li><a href="">10</a></li>
-									<li><a href="">▶</a></li>
+									<c:if test="${listMap.cntPage != 1 && listMap.page != 0 }">
+										<li><a href="${pageContext.request.contextPath}/list?boardNo=${listMap.boardNo}&cntPage=${listMap.cntPage-1}">◀</a></li>
+									</c:if>
+									<c:forEach var="count" begin="1" end="${listMap.page }" step="1">
+										<c:if test="${count == listMap.cntPage }">
+											<li class="active"><a href="${pageContext.request.contextPath}/list?boardNo=${listMap.boardNo}&cntPage=${count}">${count }</a></li>
+										</c:if>
+										<c:if test="${count != listMap.cntPage }">
+											<li><a href="${pageContext.request.contextPath}/list?boardNo=${listMap.boardNo}&cntPage=${count}">${count }</a></li>
+										</c:if>
+										
+									</c:forEach>
+									<c:if test="${listMap.cntPage != listMap.page && listMap.page != 0 }">
+										<li><a href="${pageContext.request.contextPath}/list?boardNo=${listMap.boardNo}&cntPage=${listMap.cntPage+1}">▶</a></li>
+									</c:if>
 								</ul>
 
 
