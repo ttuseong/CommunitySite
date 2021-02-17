@@ -8,7 +8,7 @@
 		<p class="cbox-desc">직업별 정보 공유</p>
 		<div class="menu">
 			<ul>
-				<c:forEach items="${map.menuList}" var="vo">
+				<c:forEach items="${menu.menuList}" var="vo">
 					<c:if test="${vo.boardType == 0 }">
 						<li><a href="${pageContext.request.contextPath}/list?boardNo=${vo.boardNo}">${vo.boardName}<i
 								class="fas fa-angle-double-right"></i></a></li>
@@ -23,14 +23,14 @@
 		<h4 class="cbox-title">커뮤니티 게시판</h4>
 		<p class="cbox-desc">자유로운 소통 공간</p>
 
-		<c:forEach items="${map.menuList }" var="vo">
+		<c:forEach items="${menu.menuList }" var="vo">
 			<c:if test="${vo.boardType == 1 }">
 				<div class="notice">
 					<h5>${vo.boardName }</h5>
 					<ul>
-						<c:forEach items="${map.contentMap }" var="mapVo">
-							<c:if test="${mapVo.key == vo.boardNo }">
-								<c:forEach items="${mapVo.value }" var="content">
+						<c:forEach items="${menu.contentmenu }" var="menuVo">
+							<c:if test="${menuVo.key == vo.boardNo }">
+								<c:forEach items="${menuVo.value }" var="content">
 									<li><a href="${pageContext.request.contextPath}/read?contentNo=${content.contentNo}">${content.boardTitle }</a></li>
 								</c:forEach>
 							</c:if>
