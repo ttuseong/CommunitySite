@@ -74,7 +74,7 @@
 									<c:forEach items="${listMap.list }" var="listVo">
 										<tr>
 											<td>${listVo.contentNo }</td>
-											<td class="text-left"><a href="#">${listVo.boardTitle}</a></td>
+											<td class="text-left"><a href="${pageContext.request.contextPath}/read?contentNo=${listVo.contentNo}">${listVo.boardTitle}</a></td>
 											<td>${listVo.boardTime}</td>
 											<td><a href="">[삭제]</a></td>
 										</tr>

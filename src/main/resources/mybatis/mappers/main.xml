@@ -78,4 +78,17 @@
 			    rw <= #{endPage}
 		]]>
 	</select>
+	
+	<select id="content" parameterType="int" resultType="com.project_1.vo.ContentVo">
+		<![CDATA[
+			SELECT
+			    boardcontent,
+			    TO_CHAR(boardTime,'YYYY-MM-DD') boardTime,
+			    boardTitle
+			FROM
+			    board_content
+			where
+			    contentNo = #{contentNo}
+		]]>
+	</select>
 </mapper>

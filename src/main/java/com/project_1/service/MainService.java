@@ -51,8 +51,8 @@ public class MainService {
 		return contentMap;
 	}
 	
-	//
-	public Map<String, Object> getContent(int boardNo, int cntPage){
+	//게시판에서 필요한 정보를 가져오기 위해 다른 메소드를 호출하고 정리하여 컨트롤러로 보내주는 역할
+	public Map<String, Object> getContents(int boardNo, int cntPage){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("page", Math.ceil(countContent(boardNo)/10.0));
@@ -76,5 +76,10 @@ public class MainService {
 		map.put("endPage", cntPage * 10);
 		
 		return mainDao.getContentList(map);
+	}
+	
+	public ContentVo getContent(int contentNo) {
+
+		return mainDao.getContent(contentNo);
 	}
 }

@@ -28,7 +28,7 @@
 				<div class="notice">
 					<h5>${vo.boardName }</h5>
 					<ul>
-						<c:forEach items="${menu.contentmenu }" var="menuVo">
+						<c:forEach items="${menu.contentMap }" var="menuVo">
 							<c:if test="${menuVo.key == vo.boardNo }">
 								<c:forEach items="${menuVo.value }" var="content">
 									<li><a href="${pageContext.request.contextPath}/read?contentNo=${content.contentNo}">${content.boardTitle }</a></li>

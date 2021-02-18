@@ -34,4 +34,8 @@ public class MainDao {
 	public List<ContentVo> getContentList(Map<String, Object> map) {
 		return sqlSession.selectList("main.contentList", map);
 	}
+	
+	public ContentVo getContent(int contentNo) {
+		return sqlSession.selectOne("main.content", contentNo);
+	}
 }

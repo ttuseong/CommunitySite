@@ -29,15 +29,17 @@ public class MainController {
 			@RequestParam(value="cntPage", required=false, defaultValue="1") int cntPage) {
 		checkMenuCookie(session);
 		
-		model.addAttribute("listMap", mainService.getContent(boardNo, cntPage));
+		model.addAttribute("listMap", mainService.getContents(boardNo, cntPage));
 		
 		return "list";
 	}
 
 	//게시글 읽기
 	@RequestMapping("/read")
-	public String read(HttpSession session) {
+	public String read(HttpSession session,Model model,@RequestParam("contentNo") int contentNo) {
 		checkMenuCookie(session);
+		
+		model.addAttribute("contentVo", mainService.getContent(contentNo));
 
 		return "read";
 	}

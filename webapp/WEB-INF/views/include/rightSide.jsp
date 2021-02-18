@@ -4,7 +4,7 @@
 <section id="cont-right">
 	<h3 class="ir">cont-right</h3>
 	<article class="cbox column7">
-		<h4 class="cbox-title">${cookie.count.value }</h4>
+		<h4 class="cbox-title">광고 1</h4>
 		<p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
 		<figure class="img1 rotate">
 			<a href="#">

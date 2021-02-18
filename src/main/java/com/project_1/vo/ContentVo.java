@@ -5,14 +5,17 @@ public class ContentVo {
 	int boardNo;
 	String boardTitle;
 	String boardTime;
+	String boardContent;
 	
 	public ContentVo() { }
 
-	public ContentVo(int contentNo, int boardNo, String boardTitle, String boardTime) {
+	public ContentVo(int contentNo, int boardNo, String boardTitle, String boardTime, String boardContent) {
+		super();
 		this.contentNo = contentNo;
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
 		this.boardTime = boardTime;
+		this.boardContent = boardContent;
 	}
 
 	public int getContentNo() {
@@ -47,10 +50,20 @@ public class ContentVo {
 		this.boardTime = boardTime;
 	}
 
+	public String getBoardContent() {
+		return boardContent;
+	}
+
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
+	}
+
 	@Override
 	public String toString() {
 		return "ContentVo [contentNo=" + contentNo + ", boardNo=" + boardNo + ", boardTitle=" + boardTitle
-				+ ", boardTime=" + boardTime + "]";
+				+ ", boardTime=" + boardTime + ", boardContent=" + boardContent + "]";
 	}
+
+	
 	
 }
