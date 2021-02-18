@@ -6,16 +6,19 @@ public class ContentVo {
 	String boardTitle;
 	String boardTime;
 	String boardContent;
+	String imgName;
 	
 	public ContentVo() { }
 
-	public ContentVo(int contentNo, int boardNo, String boardTitle, String boardTime, String boardContent) {
+	public ContentVo(int contentNo, int boardNo, String boardTitle, String boardTime, String boardContent,
+			String imgName) {
 		super();
 		this.contentNo = contentNo;
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
 		this.boardTime = boardTime;
 		this.boardContent = boardContent;
+		this.imgName = imgName;
 	}
 
 	public int getContentNo() {
@@ -58,12 +61,18 @@ public class ContentVo {
 		this.boardContent = boardContent;
 	}
 
+	public String getImgName() {
+		return imgName;
+	}
+
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
+
 	@Override
 	public String toString() {
 		return "ContentVo [contentNo=" + contentNo + ", boardNo=" + boardNo + ", boardTitle=" + boardTitle
-				+ ", boardTime=" + boardTime + ", boardContent=" + boardContent + "]";
+				+ ", boardTime=" + boardTime + ", boardContent=" + boardContent + ", imgName=" + imgName + "]";
 	}
 
-	
-	
 }

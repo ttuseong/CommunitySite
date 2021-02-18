@@ -38,4 +38,12 @@ public class MainDao {
 	public ContentVo getContent(int contentNo) {
 		return sqlSession.selectOne("main.content", contentNo);
 	}
+	
+	public int writeContent(ContentVo contentVo) {
+		return sqlSession.insert("main.writecontent", contentVo);
+	}
+	
+	public int insertImg(Map<String, Object> imgMap) {
+		return sqlSession.insert("main.insertImg", imgMap);
+	}
 }

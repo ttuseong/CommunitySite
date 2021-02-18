@@ -46,20 +46,21 @@
 					<p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
 					<div id="board">
 						<div id="writeForm">
-							<form action="#" method="get">
+							<form action="${pageContext.request.contextPath}/write" method="post" enctype="multipart/form-data">
 								<!-- 제목 -->
 								<div class="form-group">
 									<label class="form-text" for="txt-title">제목</label> <input
-										type="text" id="txt-title" name="" value=""
+										type="text" id="txt-title" name="boardTitle" value=""
 										placeholder="제목을 입력해 주세요">
 								</div>
 
 								<!-- 내용 -->
 								<div class="form-group">
-									<textarea id="txt-content"></textarea>
+									<textarea id="txt-content" name="boardContent"></textarea>
 								</div>
-
-								<a id="btn_cancel" href="">취소</a>
+								
+								<input class="hiddenClass" name="boardNo" value="${boardNo }">
+								<input type="file" name="file">
 								<button id="btn_add" type="submit">등록</button>
 
 							</form>

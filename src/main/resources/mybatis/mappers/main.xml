@@ -82,13 +82,35 @@
 	<select id="content" parameterType="int" resultType="com.project_1.vo.ContentVo">
 		<![CDATA[
 			SELECT
-			    boardcontent,
-			    TO_CHAR(boardTime,'YYYY-MM-DD') boardTime,
-			    boardTitle
+			    bc.boardcontent,
+			    TO_CHAR(bc.boardTime,'YYYY-MM-DD') boardTime,
+			    bc.boardtitle,
+			    bi.imgname
 			FROM
-			    board_content
+			    board_content bc,
+			    board_img bi
 			where
-			    contentNo = #{contentNo}
+			    bc.contentno = bi.contentno(+)
+			and
+			    bc.contentno = #{contentNo}
 		]]>
 	</select>
+	
+	<insert id="writecontent" parameterType="com.project_1.vo.ContentVo">
+		<selectKey keyProperty="contentNo" resultType="int" order="BEFORE">
+			select SQ_BOARD_CONTENT.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into board_content
+			values(#{contentNo}, #{boardNo},#{boardContent}, sysdate, #{boardTitle})
+		]]>
+	</insert>
+	
+	<insert id="insertImg" parameterType="map">
+		<![CDATA[
+			insert into board_img
+			values(#{contentNo}, #{imgName}, 0)
+		]]>
+	</insert>
+	
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -61,11 +62,12 @@
 								<!-- 내용 -->
 								<div id="txt-content">
 									<span class="form-value"> 
+										<c:if test="${contentVo.imgName != null }">
+											<img alt="" src="${pageContext.request.contextPath}/upload/${contentVo.imgName}">
+										</c:if>
 										${contentVo.boardContent}
 									</span>
 								</div>
-
-								<a id="btn_modify" href="">수정</a> <a id="btn_modify" href="">목록</a>
 
 							</form>
 							<!-- //form -->

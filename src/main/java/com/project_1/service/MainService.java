@@ -1,11 +1,17 @@
 package com.project_1.service;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project_1.dao.MainDao;
 import com.project_1.vo.BoardVo;
@@ -78,8 +84,46 @@ public class MainService {
 		return mainDao.getContentList(map);
 	}
 	
+	//게시물에 보여줄 정보를 가져오는 역할
 	public ContentVo getContent(int contentNo) {
-
+		System.out.println(mainDao.getContent(contentNo));
 		return mainDao.getContent(contentNo);
+	}
+	
+	//게시글 저장 및 이미지 저장
+	public void writeContent(ContentVo contentVo, MultipartFile file) {
+		if(mainDao.writeContent(contentVo) == 1) {
+			System.out.println("성공");
+			
+			if(!file.isEmpty()) {
+				String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+				String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+
+				try {
+					byte[] fileData = file.getBytes();
+					OutputStream out = new FileOutputStream("D:\\upload\\"+saveName);
+					BufferedOutputStream bout = new BufferedOutputStream(out);
+					
+					bout.write(fileData);
+					bout.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				Map<String, Object> imgMap = new HashMap<String, Object>();
+				
+				System.out.println(contentVo.getContentNo());
+				
+				imgMap.put("contentNo", contentVo.getContentNo());
+				imgMap.put("imgName", saveName);
+				
+				mainDao.insertImg(imgMap);
+			}
+			
+		} else {
+			System.out.println("실패");
+		}
+		
 	}
 }
