@@ -46,4 +46,8 @@ public class MainDao {
 	public int insertImg(Map<String, Object> imgMap) {
 		return sqlSession.insert("main.insertImg", imgMap);
 	}
+	
+	public int delete(Map<String, Object> formData) {
+		return sqlSession.delete("main.delete", formData);
+	}
 }

@@ -76,7 +76,7 @@
 											<td>${listVo.contentNo }</td>
 											<td class="text-left"><a href="${pageContext.request.contextPath}/read?contentNo=${listVo.contentNo}">${listVo.boardTitle}</a></td>
 											<td>${listVo.boardTime}</td>
-											<td><a href="">[삭제]</a></td>
+											<td><a class="listDelete">[삭제]</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -121,6 +121,7 @@
 
 	<jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/list.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
 <script type="text/javascript"

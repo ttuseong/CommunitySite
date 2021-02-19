@@ -113,4 +113,11 @@
 		]]>
 	</insert>
 	
+	<delete id="delete" parameterType="map">
+		<![CDATA[
+			delete from board_content
+			where contentNo = ${contentNo}
+		]]>
+	</delete>
+	
 </mapper>

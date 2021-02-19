@@ -126,4 +126,8 @@ public class MainService {
 		}
 		
 	}
+	
+	public int delete(Map<String, Object> formData) {
+		return mainDao.delete(formData);
+	}
 }

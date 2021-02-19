@@ -1,13 +1,17 @@
 package com.project_1.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project_1.service.MainService;
@@ -47,7 +51,7 @@ public class MainController {
 		return "read";
 	}
 	
-	//게시글 쓰기
+	//게시글폼을 가져오는데 사용
 	@RequestMapping("/writeForm")
 	public String writeForm(HttpSession session,Model model ,@RequestParam("boardNo") int boardNo) {
 		checkMenuSession(session);
@@ -60,6 +64,7 @@ public class MainController {
 		return "write";
 	}
 	
+	//db에 정장될 내용을 전송하고 목록으로 이동하는 메소드
 	@RequestMapping("/write")
 	public String write(HttpSession session,Model model ,@ModelAttribute ContentVo contentVo,
 			@RequestParam(value="file", required = false) MultipartFile file) {
@@ -71,6 +76,13 @@ public class MainController {
 		return "redirect:/list";
 	}
 
+	@RequestMapping("/delete")
+	@ResponseBody
+	public int delete(@RequestBody  Map<String, Object> formData) {
+		
+		return mainService.delete(formData);
+	}
+	
 	//게시판 내용을 한번만 가져오고 메뉴 이동할 때는 미리 저장된 값을 가져오게 설정
 	public void checkMenuSession(HttpSession session) {
 		if(session.getAttribute("menu") == null) {
