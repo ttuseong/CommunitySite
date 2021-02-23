@@ -35,7 +35,7 @@
 			
 		  	<c:if test="${authUser == 1 }">
 		  		<div class="userForm">
-	            	<button class="manage" type="button" name="button">관리</button>
+	            	<a class="manage" href="${pageContext.request.contextPath}/admin/board">관리</a>
 	            	<a class="logout" href="${pageContext.request.contextPath}/logout">로그아웃</a>
 	          	</div>
 		  	</c:if>
