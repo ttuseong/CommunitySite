@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.transitions.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script></script>
     <script src="https://kit.fontawesome.com/ff5ee53d46.js" crossorigin="anonymous"></script>
@@ -93,5 +94,5 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/custom.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/owl.carousel.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/lightgallery.min.js"></script>
-  
+  <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/modal.js"></script>
 </html>

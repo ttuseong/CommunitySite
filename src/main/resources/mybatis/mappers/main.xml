@@ -120,4 +120,17 @@
 		]]>
 	</delete>
 	
+	<select id="login" parameterType="com.project_1.vo.UserVo" resultType="int">
+		<![CDATA[
+			SELECT
+			    count(*)
+			FROM
+			    manager
+			where
+			    managerID = #{managerID}
+			and
+			    managerPW = #{managerPW}
+		]]>
+	</select>
+	
 </mapper>

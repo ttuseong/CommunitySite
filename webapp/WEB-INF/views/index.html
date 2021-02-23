@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../assets/css/owl.transitions.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/modal.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script></script>
     <script src="https://kit.fontawesome.com/ff5ee53d46.js" crossorigin="anonymous"></script>
@@ -53,8 +54,32 @@
             </ul>
             <!-- icon-font -->
           </div>
+
+          <div class="userForm">
+            <button data-id="loginForm" class="login modalOpen" type="button" name="button">로그인</button>
+          </div>
+
+          <!-- <div class="userForm">
+            <button class="manage" type="button" name="button">관리</button>
+            <button class="logout" type="button" name="button">로그아웃</button>
+          </div> -->
         </div>
         <!-- row -->
+      </div>
+
+      <div class="modal" id="loginForm">
+      	<div class="modal_cancell_ground">
+      	</div>
+              <div class="modal_background">
+                  <div class="modal_size">
+                    <form class="" action="index.html" method="post">
+                      <input class="loginFormInput" placeholder="관리자 계정" type="text" name="" value="">
+                      <input class="loginFormInput" placeholder="비밀번호" type="password" name="" value="">
+                      <button class="loginFormButton" type="button" name="button">확인</button>
+                      <button class="loginFormButton" type="button" name="button">취소</button>
+                    </form>
+                	</div>
+              </div>
       </div>
       <!-- container -->
     </header>
@@ -251,6 +276,7 @@
   <script type="text/javascript" src="../../assets/js/custom.js"></script>
   <script type="text/javascript" src="../../assets/js/owl.carousel.min.js"></script>
   <script type="text/javascript" src="../../assets/js/lightgallery.min.js"></script>
+  <script type="text/javascript" src="../../assets/js/modal.js"></script>
   <script type="text/javascript">
       $(document).ready(function() {
           $("#lightgallery").lightGallery();

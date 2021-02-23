@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project_1.vo.BoardVo;
 import com.project_1.vo.ContentVo;
+import com.project_1.vo.UserVo;
 
 @Repository
 public class MainDao {
@@ -49,5 +50,9 @@ public class MainDao {
 	
 	public int delete(Map<String, Object> formData) {
 		return sqlSession.delete("main.delete", formData);
+	}
+	
+	public int login(UserVo userVo) {
+		return sqlSession.selectOne("main.login", userVo);
 	}
 }

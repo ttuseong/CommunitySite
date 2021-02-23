@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project_1.service.MainService;
 import com.project_1.vo.ContentVo;
+import com.project_1.vo.UserVo;
 
 @Controller
 public class MainController {
@@ -81,6 +82,22 @@ public class MainController {
 	public int delete(@RequestBody  Map<String, Object> formData) {
 		
 		return mainService.delete(formData);
+	}
+	
+	@RequestMapping("/login")
+	public String login(@ModelAttribute UserVo userVo, HttpSession session) {	
+		if(mainService.login(userVo) == 1) {
+			session.setAttribute("authUser", 1);
+		}
+	
+		return "redirect:/";
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/";
 	}
 	
 	//게시판 내용을 한번만 가져오고 메뉴 이동할 때는 미리 저장된 값을 가져오게 설정

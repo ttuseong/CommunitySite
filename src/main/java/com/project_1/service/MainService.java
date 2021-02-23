@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project_1.dao.MainDao;
 import com.project_1.vo.BoardVo;
 import com.project_1.vo.ContentVo;
+import com.project_1.vo.UserVo;
 
 @Service
 public class MainService {
@@ -129,5 +130,9 @@ public class MainService {
 	
 	public int delete(Map<String, Object> formData) {
 		return mainDao.delete(formData);
+	}
+	
+	public int login(UserVo userVo) {
+		return mainDao.login(userVo);
 	}
 }
