@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -31,15 +30,15 @@
     		<jsp:include page="/WEB-INF/views/include/adminLeftSide.jsp" />
     		
     		<section id="cont-center">
-    			<h2>게시판 관리</h2>
+    			<h2>광고 관리</h2>
     			<section>
-	    			<form>
-	    				<h3>게시판 추가</h3>
+	    			<form action="">
+	    				<h3>광고 추가</h3>
 	    				<div class="conterContents">
 	    					<input type="text" placeholder="게시판 이름을 입력해주세요" name="boardName">
-		    				<span>직업 게시판</span>    <input type="radio" name="boardType" value="0">
-		    				<span>커뮤니티 게시판</span> <input type="radio" name="boardType" value="1">
-		    				<button class="boardInsertBtn" type="button">확인</button>
+		    				<span>직업 게시판</span> </a><input type="radio" name="boardType">
+		    				<span>커뮤니티 게시판</span> <input type="radio" name="boardType">
+		    				<button type="submit">확인</button>
 	    				</div>
 	    			</form>
     			</section>
@@ -56,19 +55,24 @@
 	    						</tr>
 	    					</thead>
 	    					<tbody>
-	    						<c:forEach items="${boardList }" var="boardVo">
-	    							<tr>
-		    							<td>${boardVo.boardNo }</td>
-		    							<td>${boardVo.boardName }</td>
-		    							<c:if test="${boardVo.boardType == 0 }">
-		    								<td>직업 게시판</td>
-		    							</c:if>
-		    							<c:if test="${boardVo.boardType != 0 }">
-		    								<td>커뮤니티 게시판</td>
-		    							</c:if>
-		    							<td><i class="fas fa-trash-alt deleteBtn"></i></td>
-		    						</tr>
-	    						</c:forEach>
+	    						<tr>
+	    							<td>1</td>
+	    							<td>바드</td>
+	    							<td>직업 게시판</td>
+	    							<td><i class="fas fa-trash-alt"></i></td>
+	    						</tr>
+	    						<tr>
+	    							<td>1</td>
+	    							<td>바드</td>
+	    							<td>직업 게시판</td>
+	    							<td><i class="fas fa-trash-alt"></i></td>
+	    						</tr>
+	    						<tr>
+	    							<td>1</td>
+	    							<td>바드</td>
+	    							<td>직업 게시판</td>
+	    							<td><i class="fas fa-trash-alt"></i></td>
+	    						</tr>
 	    					</tbody>
 	    				</table>
     				</div>
@@ -78,5 +82,4 @@
     </section>
 
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/adminBoard.js"></script>
 </html>

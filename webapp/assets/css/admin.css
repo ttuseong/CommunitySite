@@ -1,7 +1,10 @@
 /* 왼쪽 사이드 */
-.adminMenu li { margin: 15px; position: relative; cursor: pointer; font-size: 20px; color: #878787; }
-.adminMenu li:hover{ color:rgb(0,0,0); }
+.adminMenu li { margin: 15px; position: relative; cursor: pointer; font-size: 20px; }
+.adminMenu li a { display:block; width: 100%; }
+.adminMenu li a:visited { color: #878787; }
+.adminMenu li a:hover { color: #000; }
 .adminMenu li a i { position: absolute; right: 0; }
+
 
 /* 가운데 컨텐츠 영역 */
 #cont-center  { min-height: 0;  margin-right: 0; border-right: 0; height: calc(100vh - 215px); padding: 10px; box-sizing: border-box;}

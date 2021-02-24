@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	<select id="boardSelect" resultType="com.project_1.vo.BoardVo">
+		<![CDATA[
+			SELECT
+			    boardNo,
+			    boardName,
+			    boardType
+			FROM
+			    board_name
+			order by boardNo desc
+		]]>
+	</select>
+	
+	<insert id="boardInsert" parameterType="com.project_1.vo.BoardVo">
+		<selectKey keyProperty="boardNo" resultType="int" order="BEFORE">
+			select SQ_BOARD_NAME.nextval from dual
+		</selectKey>
+		<![CDATA[
+			INSERT into board_name
+			values (#{boardNo}, #{boardName}, #{boardType})
+		]]>
+	</insert>
+	
+	<delete id="boardDelete" parameterType="int">
+		<![CDATA[
+			delete from board_name
+			where boardNo = #{boardNo}
+		]]>
+	</delete>
+</mapper>
