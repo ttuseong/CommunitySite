@@ -94,8 +94,6 @@ public class MainService {
 	//게시글 저장 및 이미지 저장
 	public void writeContent(ContentVo contentVo, MultipartFile file) {
 		if(mainDao.writeContent(contentVo) == 1) {
-			System.out.println("성공");
-			
 			if(!file.isEmpty()) {
 				String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 				String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;

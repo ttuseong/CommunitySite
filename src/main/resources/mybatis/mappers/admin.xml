@@ -30,4 +30,29 @@
 			where boardNo = #{boardNo}
 		]]>
 	</delete>
+	
+	<select id="eventSelect" resultType="com.project_1.vo.EventVo">
+		SELECT
+		    *
+		FROM
+		    event
+		order by eventNo desc
+	</select>
+	
+	<insert id="eventInsert" parameterType="map">
+		<selectKey keyProperty="eventNo" resultType="int" order="BEFORE">
+			select SQ_EVENT.nextval from dual
+		</selectKey>
+		<![CDATA[
+			insert into event
+			values(#{eventNo}, #{saveName}, #{eventLink}, #{eventName})
+		]]>
+	</insert>
+	
+	<delete id="eventDelete" parameterType="int">
+		<![CDATA[
+			delete from event
+			where eventno = #{eventNo}
+		]]>
+	</delete>
 </mapper>

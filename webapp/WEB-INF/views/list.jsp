@@ -67,7 +67,9 @@
 										<th>번호</th>
 										<th>제목</th>
 										<th>작성일</th>
-										<th>관리</th>
+										<c:if test="${authUser == 1 }">
+											<th>관리</th>
+										</c:if>
 									</tr>
 								</thead>
 								<tbody>
@@ -76,7 +78,9 @@
 											<td>${listVo.contentNo }</td>
 											<td class="text-left"><a href="${pageContext.request.contextPath}/read?contentNo=${listVo.contentNo}">${listVo.boardTitle}</a></td>
 											<td>${listVo.boardTime}</td>
-											<td><a class="listDelete">[삭제]</a></td>
+											<c:if test="${authUser == 1 }">
+												<td><a class="listDelete">[삭제]</a></td>
+											</c:if>
 										</tr>
 									</c:forEach>
 								</tbody>

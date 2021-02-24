@@ -1,0 +1,13 @@
+/* 가운데 컨텐츠 영역 */
+#cont-center  { min-height: 0;  margin-right: 0; border-right: 0; height: calc(100vh - 215px); padding: 10px; box-sizing: border-box;}
+#cont-center h2 { font-size: 20px; margin-bottom: 20px; }
+#cont-center section { border: 1px solid; border-radius: 3px; box-shadow: 0px 0px 5px #878787; margin-bottom: 25px;  }
+#cont-center h3 { padding: 5px; }
+#cont-center .conterContents { padding: 5px; }
+#cont-center table{width: 100%}
+#cont-center table thead tr th:nth-child(1) { width: 25% }
+#cont-center table thead tr th:nth-child(2) { width: 30% }
+#cont-center table thead tr th:nth-child(3) { width: 30% }
+#cont-center table thead tr th:nth-child(4) { width: 15% }
+#cont-center table tbody td { text-align: center; height: 30px; vertical-align: middle;}
+#cont-center th, td { border: 1px solid #000; }

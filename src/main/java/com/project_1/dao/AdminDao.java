@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project_1.vo.BoardVo;
+import com.project_1.vo.EventVo;
 
 @Repository
 public class AdminDao {
@@ -24,5 +25,17 @@ public class AdminDao {
 	
 	public int DeleteBoard(Map<String, Object> formData) {
 		return session.delete("admin.boardDelete", formData);
+	}
+	
+	public List<EventVo> SelectEvent() {
+		return session.selectList("admin.eventSelect");
+	}
+	
+	public void InsertEvent(Map<String, Object> map) {
+		session.insert("admin.eventInsert", map);
+	}
+	
+	public int DeleteEvent(Map<String, Object> map) {
+		return session.delete("admin.eventDelete", map);
 	}
 }

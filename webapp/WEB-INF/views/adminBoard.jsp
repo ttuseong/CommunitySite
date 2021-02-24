@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/adminBoard.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script></script>
     <script src="https://kit.fontawesome.com/ff5ee53d46.js" crossorigin="anonymous"></script>
