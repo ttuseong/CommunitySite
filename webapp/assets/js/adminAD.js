@@ -1,11 +1,12 @@
 var url = window.location.pathname.substring(0,window.location.pathname.indexOf("/",2));
-$(".eventInsertBtn").on("click", function(){	
-	var form = $(".eventForm");
+
+$(".adInsertBtn").on("click", function(){	
+	var form = $(".adForm");
 	
 	var formData = new FormData(form[0]);
 	
 	$.ajax({		
-		url : url+"/admin/eventInsert",			
+		url : url+"/admin/adInsert",			
 		type: "post",
 		enctype: 'multipart/form-data',
 		processData:false,
@@ -13,7 +14,7 @@ $(".eventInsertBtn").on("click", function(){
 		data : formData,
 		dataType : "json",
 		success : function(result){
-			addEvent(result);
+			addAd(result);
 		},	
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -21,28 +22,28 @@ $(".eventInsertBtn").on("click", function(){
 	}); 
 });
 
-function addEvent(vo){
+function addAd(vo){
 	var str = "";
 	
 	str += '<tr>';
-	str += '	<td>'+ vo.eventNo +'</td>';
-	str += '	<td>'+ vo.eventName +'</td>';
-	str += '	<td>'+ vo.eventLink +'</td>';
-	str += '	<td><img alt="" src="' + url+'/upload/' + vo.saveName + '"></td>';
-	str += '	<td><i class="fas fa-trash-alt deleteBtn"></i></td>';
+	str += '<td>'+ vo.adNo + '</td>';
+	str += '<td>' + vo.adTitle + '</td>';
+	str += '<td>' + vo.adDesc + '</td>';
+	str += '<td><img alt="" src="' + url + '/upload/' + vo.saveName + '"></td>';
+	str += '<td>'+ vo.adEffect + '</td>';
+	str += '<td><i class="fas fa-trash-alt deleteBtn"></i></td>';
 	str += '</tr>';
 	
-	$("tbody").prepend(str);	
-	
+	$("tbody").prepend(str);
 }
 
 $("tbody").on("click", ".deleteBtn", function(){
 	var thisTarget = $(this);
 	
-	var formData = { eventNo : $(this).parent().prev().prev().prev().prev().text() }
-	
+	var formData = { adNo : thisTarget.parent().prev().prev().prev().prev().prev().text() }
+
 	$.ajax({		
-		url : url+"/admin/eventDelete",			
+		url : url+"/admin/adDelete",			
 		type: "post",
        	contentType : "application/json",
 		data : JSON.stringify(formData),

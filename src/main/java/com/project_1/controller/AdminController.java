@@ -62,7 +62,25 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/ad")
-	public String ad() {
+	public String ad(Model model) {
+		model.addAttribute("adList", adminService.AdSelect());
+		
 		return "adminAD";
+	}
+	
+	@RequestMapping("/adInsert")
+	@ResponseBody
+	public Map<String, Object> adInsert(@RequestParam("adTitle") String adTitle, @RequestParam("adDesc") String adDesc, 
+				@RequestParam("adEffect") int adEffect, @RequestParam("adImg") MultipartFile adImg){
+		System.out.println("controller");
+		
+		return adminService.adInsert(adTitle, adDesc, adEffect, adImg);
+	}
+	
+	@RequestMapping("/adDelete")
+	@ResponseBody
+	public int adDelete(@RequestBody Map<String, Object> formData) {
+		System.out.println(formData.get("adNo"));
+		return adminService.adDelete(formData);
 	}
 }

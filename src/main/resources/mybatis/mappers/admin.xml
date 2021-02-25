@@ -55,4 +55,35 @@
 			where eventno = #{eventNo}
 		]]>
 	</delete>
+	
+	<select id="adSelect" resultType="com.project_1.vo.AdVo">
+		<![CDATA[
+			SELECT
+			    adNo,
+			    adTitle,
+			    adDesc,
+			    adImg,
+			    adEffect
+			FROM
+			    ad
+			order by adNo desc
+		]]>
+	</select>
+	
+	<insert id="adInsert">
+		<selectKey keyProperty="adNo" resultType="int" order="BEFORE">
+			select SQ_AD.nextval from dual
+		</selectKey>
+		<![CDATA[
+			INSERT INTO ad
+			VALUES(#{adNo}, #{adTitle}, #{adDesc}, #{saveName}, #{adEffect})
+		]]>
+	</insert>
+	
+	<delete id="adDelete" parameterType="map">
+		<![CDATA[
+			delete from ad
+			where adno = #{adNo}
+		]]>
+	</delete>
 </mapper>

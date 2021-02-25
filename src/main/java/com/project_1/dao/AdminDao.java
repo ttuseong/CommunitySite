@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project_1.vo.AdVo;
 import com.project_1.vo.BoardVo;
 import com.project_1.vo.EventVo;
 
@@ -37,5 +38,17 @@ public class AdminDao {
 	
 	public int DeleteEvent(Map<String, Object> map) {
 		return session.delete("admin.eventDelete", map);
+	}
+	
+	public List<AdVo> SelectAd(){
+		return session.selectList("admin.adSelect");
+	}
+	
+	public void InsertAd(Map<String, Object> map) {
+		session.insert("admin.adInsert", map);
+	}
+	
+	public int DeleteAd(Map<String, Object> map) {
+		return session.delete("adDelete", map);
 	}
 }

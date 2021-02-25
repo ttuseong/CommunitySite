@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project_1.dao.AdminDao;
+import com.project_1.vo.AdVo;
 import com.project_1.vo.BoardVo;
 import com.project_1.vo.EventVo;
 
@@ -69,5 +70,43 @@ public class AdminService {
 	
 	public int EventDelete(Map<String, Object> map) {
 		return adminDao.DeleteEvent(map);
+	}
+	
+	public List<AdVo> AdSelect(){
+		return adminDao.SelectAd();
+	}
+	
+	public Map<String, Object> adInsert(String adTitle, String adDesc, int adEffect, MultipartFile file) {
+		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+		Map<String, Object> adMap = null;
+		try {
+			byte[] fileData = file.getBytes();
+			OutputStream out = new FileOutputStream("D:\\upload\\"+saveName);
+			BufferedOutputStream bout = new BufferedOutputStream(out);
+			
+			bout.write(fileData);
+			bout.close();
+			
+			adMap = new HashMap<String, Object>();
+			
+			adMap.put("adTitle", adTitle);
+			adMap.put("adDesc", adDesc);
+			adMap.put("adEffect", adEffect);
+			adMap.put("saveName", saveName);
+						
+			adminDao.InsertAd(adMap);
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return adMap;
+	}
+	
+	public int adDelete(Map<String, Object> map) {
+		return adminDao.DeleteAd(map);
 	}
 }
