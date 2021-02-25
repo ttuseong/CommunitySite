@@ -14,8 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project_1.dao.MainDao;
+import com.project_1.vo.AdVo;
 import com.project_1.vo.BoardVo;
 import com.project_1.vo.ContentVo;
+import com.project_1.vo.EventVo;
 import com.project_1.vo.UserVo;
 
 @Service
@@ -23,13 +25,30 @@ public class MainService {
 	@Autowired
 	MainDao mainDao;
 	
+	public Map<String, Object> getMainContent(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("eventList", eventContent());
+		map.put("imgList", imgContent());
+		return map;
+	}
+	
+	public List<EventVo> eventContent() {
+		return mainDao.getEventList();
+	}
+	
+	public List<Map<String, Object>> imgContent(){
+		return mainDao.getImgList();
+	}
+	
 	//모든 게시판을 가져오기 
 	public Map<String, Object> getBoard(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("menuList", getMenuList());
 		map.put("contentMap", getCommunityContentList(getCommunityBoardList()));
-			
+		map.put("adContent", adContent());
+		
 		return map;
 	}
 	
@@ -43,6 +62,10 @@ public class MainService {
 	//커뮤니티 게시판에 있는 게시판 목록을 가져옴
 	public List<Integer> getCommunityBoardList(){
 		return mainDao.getCommunityBoardList();
+	}
+	
+	public List<AdVo> adContent(){
+		return mainDao.getAdList();
 	}
 	
 	//커뮤니티 게시판에 있는 최신 게시글을 가져오기 위함

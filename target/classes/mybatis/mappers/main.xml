@@ -2,6 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="main">
+	<select id="eventSelect" resultType="com.project_1.vo.EventVo">
+		<![CDATA[
+			SELECT
+			    eventImg,
+			    eventLink
+			FROM
+			    event
+			order by eventNo desc
+		]]>
+	</select>
+	
+	<select id="imgSelect" resultType="map">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    (SELECT
+			        rownum rw,
+			        bi.imgname
+			    FROM
+			        (SELECT
+			            imgName
+			        FROM
+			            board_img
+			        order by contentNo desc) bi)
+			where
+			    rw <= 10
+		]]>
+	</select>
+
 	<select id="menuList" resultType="com.project_1.vo.BoardVo">
 		<![CDATA[
 			select 
@@ -19,6 +49,19 @@
 			    board_name
 			where
 			    boardType=1
+		]]>
+	</select>
+	
+	<select id="adList" resultType="com.project_1.vo.AdVo">
+		<![CDATA[
+			SELECT
+			    adtitle,
+			    addesc,
+			    adimg,
+			    adeffect
+			FROM
+			    ad
+			order by adNo desc
 		]]>
 	</select>
 	

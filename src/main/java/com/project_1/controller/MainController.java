@@ -27,7 +27,8 @@ public class MainController {
 	@RequestMapping("/")
 	public String main(Model model, HttpSession session) {
 		checkMenuSession(session);
-
+		model.addAttribute("mainContent", mainService.getMainContent());
+		
 		return "index";
 	}
 
@@ -56,9 +57,6 @@ public class MainController {
 	@RequestMapping("/writeForm")
 	public String writeForm(HttpSession session,Model model ,@RequestParam("boardNo") int boardNo) {
 		checkMenuSession(session);
-
-		
-		System.out.println(boardNo);
 		
 		model.addAttribute("boardNo", boardNo);
 		

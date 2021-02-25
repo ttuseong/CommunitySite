@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -42,8 +43,13 @@
             <p class="cbox-desc">현재 진행 중인 이벤트입니다.</p>
             <div class="gallery ">
               <div id="owl-demo" class="owl-carousel owl-theme">
-                <div class="item"><img src="${pageContext.request.contextPath}/assets/img/발탄.jpg" alt=""></div>
-                <div class="item"><img src="${pageContext.request.contextPath}/assets/img/건슬.jpg" alt=""></div>
+              	<c:forEach items="${mainContent.eventList }" var="evnetVo">
+              		<div class="item">
+              			<a href="${evnetVo.eventLink }">
+              				<img src="${pageContext.request.contextPath}/upload/${evnetVo.eventImg}" alt="">
+              			</a>
+              		</div>
+              	</c:forEach>
               </div>
             </div>
             <!-- Gallery -->
@@ -53,16 +59,9 @@
             <h4 class="cbox-title">이미지 게시판</h4>
             <p class="cbox-desc">로스트 아크관련 이미지를 공유해보세요</p>
             <div class="square clearfix" id="lightgallery">
-              <a href="${pageContext.request.contextPath}/assets/img/img1.jpg"><img src="${pageContext.request.contextPath}/assets/img/img1.jpg" alt=""></a>
-              <a href="${pageContext.request.contextPath}/assets/img/img2.jpg"><img src="${pageContext.request.contextPath}/assets/img/img2.jpg" alt=""></a>
-              <a href="${pageContext.request.contextPath}/assets/img/img3.jpg"><img src="${pageContext.request.contextPath}/assets/img/img3.jpg" alt=""></a>
-              <a href="${pageContext.request.contextPath}/assets/img/img4.jpg"><img src="${pageContext.request.contextPath}/assets/img/img4.jpg" alt=""></a>
-              <a href="${pageContext.request.contextPath}/assets/img/img2.jpg"><img src="${pageContext.request.contextPath}/assets/img/img2.jpg" alt=""></a>
-              <a href="${pageContext.request.contextPath}/assets/img/img1.jpg"><img src="${pageContext.request.contextPath}/assets/img/img1.jpg" alt=""></a>
-              <a href="${pageContext.request.contextPath}/assets/img/img2.jpg"><img src="${pageContext.request.contextPath}/assets/img/img2.jpg" alt=""></a>
-              <a href="${pageContext.request.contextPath}/assets/img/img3.jpg"><img src="${pageContext.request.contextPath}/assets/img/img3.jpg" alt=""></a>
-              <a href="${pageContext.request.contextPath}/assets/img/img4.jpg"><img src="${pageContext.request.contextPath}/assets/img/img4.jpg" alt=""></a>
-              <a href="${pageContext.request.contextPath}/assets/img/img2.jpg"><img src="${pageContext.request.contextPath}/assets/img/img2.jpg" alt=""></a>
+              <c:forEach items="${mainContent.imgList }" var="imgVo">
+              	<a href="${pageContext.request.contextPath}/upload/${imgVo.IMGNAME}"><img src="${pageContext.request.contextPath}/upload/${imgVo.IMGNAME}" alt=""></a>
+              </c:forEach>
             </div>
 
             <!-- Square -->

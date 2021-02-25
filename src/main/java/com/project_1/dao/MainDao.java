@@ -7,8 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project_1.vo.AdVo;
 import com.project_1.vo.BoardVo;
 import com.project_1.vo.ContentVo;
+import com.project_1.vo.EventVo;
 import com.project_1.vo.UserVo;
 
 @Repository
@@ -16,12 +18,24 @@ public class MainDao {
 	@Autowired
 	SqlSession sqlSession;
 	
+	public List<EventVo> getEventList(){
+		return sqlSession.selectList("main.eventSelect");
+	}
+	
+	public List<Map<String, Object>> getImgList(){
+		return sqlSession.selectList("main.imgSelect");
+	}
+	
 	public List<BoardVo> getMenuList(){
 		return sqlSession.selectList("main.menuList");
 	}
 	
 	public List<Integer> getCommunityBoardList(){
 		return sqlSession.selectList("main.communityBoardList");
+	}
+	
+	public List<AdVo> getAdList(){
+		return sqlSession.selectList("main.adList");
 	}
 	
 	public List<ContentVo> getCommunityContentList(int n){
