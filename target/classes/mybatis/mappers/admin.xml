@@ -2,15 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
-	<select id="boardSelect" resultType="com.project_1.vo.BoardVo">
+	<select id="boardSelect" parameterType="map" resultType="com.project_1.vo.BoardVo">
 		<![CDATA[
 			SELECT
-			    boardNo,
-			    boardName,
-			    boardType
+			    board.boardNo,
+			    board.boardName,
+			    board.boardType
 			FROM
-			    board_name
-			order by boardNo desc
+			    (SELECT
+			        rownum rw,
+			        board.boardNo,
+			        board.boardName,
+			        board.boardType
+			    FROM
+			        (SELECT
+			            boardNo,
+			            boardName,
+			            boardType
+			        FROM
+			            board_name
+			        order by boardNo desc) board) board
+			where
+			    rw >= #{startPage}
+			and
+			    rw <= #{endPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalBoard" resultType="int">
+		<![CDATA[
+			SELECT
+			    count(boardNo)
+			FROM
+			    board_Name
 		]]>
 	</select>
 	
@@ -24,6 +48,17 @@
 		]]>
 	</insert>
 	
+	<update id="boardUpdate" parameterType="map">
+		<![CDATA[
+			UPDATE board_Name
+			set
+			    boardName = #{boardName},
+			    boardType = #{boardType}
+			where
+			    boardNo = #{boardNo}
+		]]>
+	</update>
+	
 	<delete id="boardDelete" parameterType="int">
 		<![CDATA[
 			delete from board_name
@@ -31,12 +66,40 @@
 		]]>
 	</delete>
 	
-	<select id="eventSelect" resultType="com.project_1.vo.EventVo">
-		SELECT
-		    *
-		FROM
-		    event
-		order by eventNo desc
+	<select id="eventSelect" parameterType="map" resultType="com.project_1.vo.EventVo">
+		<![CDATA[
+			SELECT
+			    *
+			FROM
+			    (SELECT
+			        rownum rw,
+			        eventNo,
+			        eventImg,
+			        eventLink,
+			        eventName
+			    FROM
+			        (SELECT
+			            eventNo,
+			            eventImg,
+			            eventLink,
+			            eventName
+			        FROM
+			            event
+			        order by eventNo desc))
+			where
+			    rw >= #{startPage}
+			and
+			    rw <= #{endPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalEvent" resultType="int">
+		<![CDATA[
+			SELECT
+			    count(eventNo)
+			FROM
+			    event
+		]]>
 	</select>
 	
 	<insert id="eventInsert" parameterType="map">
@@ -49,6 +112,22 @@
 		]]>
 	</insert>
 	
+	<update id="eventUpdate" parameterType="map">
+		<![CDATA[
+			update event
+			set
+			    eventName = #{eventName},
+			    eventLink = #{eventLink}
+		]]>
+		<if test="saveName neq null">
+				,eventImg = #{saveName}
+		</if>	    
+		<![CDATA[
+			where
+			eventNo = #{eventNo}
+		]]>
+	</update>
+	
 	<delete id="eventDelete" parameterType="int">
 		<![CDATA[
 			delete from event
@@ -56,17 +135,41 @@
 		]]>
 	</delete>
 	
-	<select id="adSelect" resultType="com.project_1.vo.AdVo">
+	<select id="adSelect" parameterType="map" resultType="com.project_1.vo.AdVo">
 		<![CDATA[
 			SELECT
-			    adNo,
-			    adTitle,
-			    adDesc,
-			    adImg,
-			    adEffect
+			    *
+			FROM
+			    (SELECT
+			        rownum rn,
+			        adNo,
+			        adTitle,
+			        adDesc,
+			        adImg,
+			        adEffect
+			    FROM
+			        (SELECT
+			            adNo,
+			            adTitle,
+			            adDesc,
+			            adImg,
+			            adEffect
+			        FROM
+			            ad
+			        order by adNo desc))
+			where
+			    rn >= #{startPage}
+			and
+			    rn <= #{endPage}
+		]]>
+	</select>
+	
+	<select id="selectTotalAd" resultType="int">
+		<![CDATA[
+			SELECT
+			    count(adNo)
 			FROM
 			    ad
-			order by adNo desc
 		]]>
 	</select>
 	
@@ -79,6 +182,23 @@
 			VALUES(#{adNo}, #{adTitle}, #{adDesc}, #{saveName}, #{adEffect})
 		]]>
 	</insert>
+	
+	<update id="adUpdate" parameterType="map">
+		<![CDATA[
+			update ad
+			set
+			    adTitle = #{adTitle},
+			    adDesc = #{adDesc},
+			    adEffect = #{adEffect}
+		]]>
+		<if test="saveName neq null">
+				,adImg = #{saveName}
+		</if>	    
+		<![CDATA[
+			where
+			adNo = #{adNo}
+		]]>
+	</update>
 	
 	<delete id="adDelete" parameterType="map">
 		<![CDATA[

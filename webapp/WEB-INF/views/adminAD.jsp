@@ -37,6 +37,7 @@
 	    			<form class="adForm">
 	    				<h3>광고 추가</h3>
 	    				<div class="conterContents">
+	    					<input class="hiddenClass" name="adNo">
 	    					<input type="text" placeholder="광고 이름을 입력해주세요" name="adTitle">
 		    				<input type="text" placeholder="광고 내용을 입력해주세요" name="adDesc">
 		    				<input type="file" name="adImg">
@@ -61,7 +62,7 @@
 	    						</tr>
 	    					</thead>
 	    					<tbody>
-	    						<c:forEach items="${adList }" var="vo">
+	    						<c:forEach items="${adContents.adList }" var="vo">
 	    							<tr>
 		    							<td>${vo.adNo }</td>
 		    							<td>${vo.adTitle }</td>
@@ -73,6 +74,17 @@
 	    						</c:forEach>
 	    					</tbody>
 	    				</table>
+	    				<ul class="pageList">
+	    					<c:if test="${adContents.cntPage != 1 && adContents.page != 0 }">
+								<li><a href="${pageContext.request.contextPath}/admin/ad?adPage=${adContents.cntPage-1}">◀</a></li>
+							</c:if>
+	    					<c:forEach var="count" begin="1" end="${adContents.page }" step="1">
+	    						<li><a href="${pageContext.request.contextPath}/admin/ad?adPage=${count}">${count }</a></li>
+	    					</c:forEach>
+	    					<c:if test="${adContents.cntPage != adContents.page && adContents.page != 0 }">
+								<li><a href="${pageContext.request.contextPath}/admin/ad?adPage=${adContents.cntPage+1}">▶</a></li>
+							</c:if>
+	    				</ul>
     				</div>
     			</section>
     		</section>

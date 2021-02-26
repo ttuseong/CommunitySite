@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/owl.transitions.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal.css">
+	
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script></script>
     <script src="https://kit.fontawesome.com/ff5ee53d46.js" crossorigin="anonymous"></script>
@@ -56,8 +56,8 @@
           </article>
           <!-- column4 -->
           <article class="cbox column5">
-            <h4 class="cbox-title">이미지 게시판</h4>
-            <p class="cbox-desc">로스트 아크관련 이미지를 공유해보세요</p>
+            <h4 class="cbox-title">이미지</h4>
+            <p class="cbox-desc">최근에 올라온 이미지들을 확인하세요</p>
             <div class="square clearfix" id="lightgallery">
               <c:forEach items="${mainContent.imgList }" var="imgVo">
               	<a href="${pageContext.request.contextPath}/upload/${imgVo.IMGNAME}"><img src="${pageContext.request.contextPath}/upload/${imgVo.IMGNAME}" alt=""></a>

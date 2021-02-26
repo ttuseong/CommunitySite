@@ -37,6 +37,7 @@
 	    			<form class="eventForm" enctype="multipart/form-data">
 	    				<h3>이벤트 추가</h3>
 	    				<div class="conterContents">
+	    					<input class="hiddenClass" name="eventNo">
 	    					<input type="text" placeholder="이벤트 이름을 입력해주세요" name="eventName">
 		    				<input type="text" placeholder="이벤트 링크를 입력해주세요" name="eventLink">
 		    				<input type="file" name="eventImg">
@@ -58,7 +59,7 @@
 	    						</tr>
 	    					</thead>
 	    					<tbody>
-	    						<c:forEach items="${eventList }" var="listVo">
+	    						<c:forEach items="${eventContents.eventList }" var="listVo">
 	    							<tr>
 		    							<td>${listVo.eventNo}</td>
 		    							<td>${listVo.eventName }</td>
@@ -69,6 +70,17 @@
 	    						</c:forEach>
 	    					</tbody>
 	    				</table>
+	    				<ul class="pageList">
+	    					<c:if test="${eventContents.cntPage != 1 && eventContents.page != 0 }">
+								<li><a href="${pageContext.request.contextPath}/admin/event?eventPage=${eventContents.cntPage-1}">◀</a></li>
+							</c:if>
+	    					<c:forEach var="count" begin="1" end="${eventContents.page }" step="1">
+	    						<li><a href="${pageContext.request.contextPath}/admin/event?eventPage=${count}">${count }</a></li>
+	    					</c:forEach>
+	    					<c:if test="${eventContents.cntPage != eventContents.page && eventContents.page != 0 }">
+								<li><a href="${pageContext.request.contextPath}/admin/event?eventPage=${eventContents.cntPage+1}">▶</a></li>
+							</c:if>
+	    				</ul>
     				</div>
     			</section>
     		</section>

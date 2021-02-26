@@ -35,8 +35,9 @@
     			<h2>게시판 관리</h2>
     			<section>
 	    			<form>
-	    				<h3>게시판 추가</h3>
+	    				<h3>게시판 추가 및 변경</h3>
 	    				<div class="conterContents">
+	    					<input class="hiddenClass" type="text" name="boardNo">
 	    					<input type="text" placeholder="게시판 이름을 입력해주세요" name="boardName">
 		    				<span>직업 게시판</span>    <input type="radio" name="boardType" value="0">
 		    				<span>커뮤니티 게시판</span> <input type="radio" name="boardType" value="1">
@@ -57,7 +58,7 @@
 	    						</tr>
 	    					</thead>
 	    					<tbody>
-	    						<c:forEach items="${boardList }" var="boardVo">
+	    						<c:forEach items="${boardContents.boardList }" var="boardVo">
 	    							<tr>
 		    							<td>${boardVo.boardNo }</td>
 		    							<td>${boardVo.boardName }</td>
@@ -72,6 +73,17 @@
 	    						</c:forEach>
 	    					</tbody>
 	    				</table>
+	    				<ul class="pageList">
+	    					<c:if test="${boardContents.cntPage != 1 && boardContents.page != 0 }">
+								<li><a href="${pageContext.request.contextPath}/admin/board?boardPage=${boardContents.cntPage-1}">◀</a></li>
+							</c:if>
+	    					<c:forEach var="count" begin="1" end="${boardContents.page }" step="1">
+	    						<li><a href="${pageContext.request.contextPath}/admin/board?boardPage=${count}">${count }</a></li>
+	    					</c:forEach>
+	    					<c:if test="${boardContents.cntPage != boardContents.page && boardContents.page != 0 }">
+								<li><a href="${pageContext.request.contextPath}/admin/board?boardPage=${boardContents.cntPage+1}">▶</a></li>
+							</c:if>
+	    				</ul>
     				</div>
     			</section>
     		</section>

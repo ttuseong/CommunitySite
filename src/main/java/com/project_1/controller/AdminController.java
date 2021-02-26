@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project_1.service.AdminService;
+import com.project_1.vo.BoardVo;
 import com.project_1.vo.EventVo;
 @Controller
 @RequestMapping("/admin")
@@ -21,8 +22,8 @@ public class AdminController {
 	AdminService adminService;
 	
 	@RequestMapping("/board")
-	public String board(Model model) {
-		model.addAttribute("boardList", adminService.SelectBoard());
+	public String board(Model model, @RequestParam(value="boardPage", required=false, defaultValue="1") int boardPage) {
+		model.addAttribute("boardContents", adminService.SelectBoardContent(boardPage));
 		return "adminBoard";
 	}
 	
@@ -34,6 +35,14 @@ public class AdminController {
 		return formData;
 	}
 	
+	@RequestMapping("/boardUpdate")
+	@ResponseBody
+	public Map<String, Object> BoardUpdate(@RequestBody Map<String, Object> formData) {
+		adminService.UpdateBoard(formData);
+		
+		return formData;
+	}
+	
 	@RequestMapping("/boardDelete")
 	@ResponseBody
 	public int boardDelete(@RequestBody Map<String, Object> formData) {
@@ -41,8 +50,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/event")
-	public String event(Model model) {
-		model.addAttribute("eventList", adminService.SelectEvent());
+	public String event(Model model, @RequestParam(value="eventPage", required=false, defaultValue="1") int eventPage) {
+		model.addAttribute("eventContents", adminService.SelectEventContent(eventPage));
 		
 		return "adminEvent";
 	}
@@ -53,17 +62,24 @@ public class AdminController {
 		return adminService.InsertEvent(eventName, eventLink, eventImg);
 	}
 	
+	@RequestMapping("/eventUpdate")
+	@ResponseBody
+	public Map<String, Object> eventUpdate(@RequestParam("eventNo") int eventNo, @RequestParam("eventName") String eventName, @RequestParam("eventLink") String eventLink, @RequestParam(value="eventImg", required=false) MultipartFile eventImg) {
+		System.out.println(eventNo);
+		
+		return adminService.UpdateEvent(eventNo, eventName, eventLink, eventImg);
+	}
+	
 	@RequestMapping("/eventDelete")
 	@ResponseBody
 	public int EventDelete(@RequestBody Map<String, Object> formData) {
-		System.out.println(formData.get("eventNo"));
 		
 		return adminService.EventDelete(formData);
 	}
 	
 	@RequestMapping("/ad")
-	public String ad(Model model) {
-		model.addAttribute("adList", adminService.AdSelect());
+	public String ad(Model model, @RequestParam(value="adPage", required=false, defaultValue="1") int adPage) {
+		model.addAttribute("adContents", adminService.SelectAdContent(adPage));
 		
 		return "adminAD";
 	}
@@ -72,9 +88,16 @@ public class AdminController {
 	@ResponseBody
 	public Map<String, Object> adInsert(@RequestParam("adTitle") String adTitle, @RequestParam("adDesc") String adDesc, 
 				@RequestParam("adEffect") int adEffect, @RequestParam("adImg") MultipartFile adImg){
-		System.out.println("controller");
-		
+
 		return adminService.adInsert(adTitle, adDesc, adEffect, adImg);
+	}
+	
+	@RequestMapping("/adUpdate")
+	@ResponseBody
+	public Map<String, Object> adUpdate(@RequestParam("adNo") int adNo, @RequestParam("adTitle") String adTitle, @RequestParam("adDesc") String adDesc, 
+			@RequestParam("adEffect") int adEffect, @RequestParam(value="adImg", required=false) MultipartFile adImg){
+		
+		return adminService.adUpdate(adNo, adTitle, adDesc, adEffect, adImg);
 	}
 	
 	@RequestMapping("/adDelete")
