@@ -163,6 +163,17 @@
 		]]>
 	</delete>
 	
+	<select id="getSalt" parameterType="com.project_1.vo.UserVo" resultType="String">
+		<![CDATA[
+			SELECT
+			    salt
+			FROM
+			    manager
+			where
+			    managerid = #{managerID}
+		]]>
+	</select>
+	
 	<select id="login" parameterType="com.project_1.vo.UserVo" resultType="int">
 		<![CDATA[
 			SELECT
@@ -176,4 +187,10 @@
 		]]>
 	</select>
 	
+	<insert id="logreg" parameterType="com.project_1.vo.UserVo">
+		<![CDATA[
+			INSERT INTO manager
+			values(SQ_MANAGER.nextval, #{managerID}, #{managerPW}, #{salt})
+		]]>
+	</insert>
 </mapper>

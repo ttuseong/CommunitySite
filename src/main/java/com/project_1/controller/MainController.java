@@ -91,9 +91,16 @@ public class MainController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("logout")
+	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
+	@RequestMapping("/logreg")
+	public String logreg(@ModelAttribute UserVo userVo) {
+		mainService.logreg(userVo);
 		
 		return "redirect:/";
 	}

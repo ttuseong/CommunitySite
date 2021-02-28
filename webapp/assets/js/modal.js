@@ -1,14 +1,3 @@
-//상태에 따른 모달 열고 닫기
-function modal(target, state){
-  if(state == 'hide'){
-    $("#"+target).css("display", "none");
-  } else if(state == "show"){
-    $("#"+target).css("display", "block");
-  } else{
-    console.log("상태 값이 이상합니다.")
-  }
-}
-
 //모달의 취소 영역 클릭 시
 $(".modal_cancell_ground").on("click", function(){
   $('html').css('overflow', 'auto');
@@ -23,10 +12,11 @@ $(".modalOpen").on("click", function(){
   var text = 'calc(50% + ' + scroll  + 'px)';
   $('.modal_background ').css('top', text);
 
-  modal($(this).data("id"), "show");
+  $("#"+$(this).data("id")).css("display", "block");
 });
 
 //  modalClose class가 있는 태그를 클릭한 경우
 $(".modalClose").on("click", function(){
+  $('html').css('overflow', 'auto');
   $(".modal").css("display", "none");
 });

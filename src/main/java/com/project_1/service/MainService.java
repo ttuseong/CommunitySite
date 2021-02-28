@@ -4,9 +4,11 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +156,56 @@ public class MainService {
 	}
 	
 	public int login(UserVo userVo) {
+		userVo.setSalt(mainDao.getSalt(userVo));
+		changePW(userVo);
+		
 		return mainDao.login(userVo);
 	}
+	
+	public void logreg(UserVo userVo) {
+		userVo.setSalt(generateSalt());
+		
+		changePW(userVo);
+		
+		mainDao.logreg(userVo);
+	}
+	
+	public void changePW(UserVo userVo) {
+		try {
+			byte[] bytes1 = (userVo.getManagerPW()).getBytes();
+			byte[] bytes2 = new byte[bytes1.length + userVo.getSalt().getBytes().length];
+			
+			System.arraycopy(bytes1, 0, bytes2, 0, bytes1.length);
+			System.arraycopy(userVo.getSalt().getBytes(), 0, bytes2, bytes1.length, userVo.getSalt().getBytes().length);
+			
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			md.update(bytes2);
+			
+			byte[] byteData = md.digest();
+			
+			StringBuilder builder = new StringBuilder();
+			for(int i = 0; i < byteData.length; i++) {
+				builder.append(Integer.toString((byteData[i]&0xff) + 0x100, 16).substring(1));
+			}
+			
+			userVo.setManagerPW(builder.toString());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	public String generateSalt() {
+        Random random = new Random();
+        
+        byte[] salt = new byte[8];
+        random.nextBytes(salt);
+        
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < salt.length; i++) {
+            // byte 값을 Hex 값으로 바꾸기.
+            sb.append(String.format("%02x",salt[i]));
+        }
+        
+        return sb.toString();
+    }
 }

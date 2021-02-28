@@ -66,7 +66,15 @@ public class MainDao {
 		return sqlSession.delete("main.delete", formData);
 	}
 	
+	public String getSalt(UserVo userVo) {
+		return sqlSession.selectOne("main.getSalt", userVo);
+	}
+	
 	public int login(UserVo userVo) {
 		return sqlSession.selectOne("main.login", userVo);
+	}
+	
+	public int logreg(UserVo userVo) {
+		return sqlSession.insert("main.logreg", userVo);
 	}
 }
