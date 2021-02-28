@@ -37,6 +37,13 @@
 
 	</bean>
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<bean id="interceptor" class="com.project_1.util.Interceptor" ></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
 	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
