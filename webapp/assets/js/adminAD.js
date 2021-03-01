@@ -91,7 +91,7 @@ $("tbody").on("click", ".deleteBtn", function(){
 
 	$.ajax({		
 		url : url+"/admin/adDelete",			
-		type: "post",
+		type: "delete",
        	contentType : "application/json",
 		data : JSON.stringify(formData),
 		dataType : "json",

@@ -27,7 +27,7 @@ $(".boardInsertBtn").on("click", function(){
 		
 		$.ajax({		
 			url : url+"/admin/boardUpdate",			
-			type: "post",
+			type: "put",
 	       	contentType : "application/json",
 			data : JSON.stringify(formData),
 			dataType : "json",
@@ -92,7 +92,7 @@ $("tbody").on("click", ".deleteBtn", function(){
 	
 	$.ajax({		
 		url : url+"/admin/boardDelete",			
-		type: "post",
+		type: "delete",
        	contentType : "application/json",
 		data : JSON.stringify(formData),
 		dataType : "json",

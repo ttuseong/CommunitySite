@@ -6,7 +6,7 @@ $(".listDelete").on("click", function(){
 
 	$.ajax({		
 			url : url+"/delete",			
-			type: "post",
+			type: "delete",
            	contentType : "application/json",
 			data : JSON.stringify(formData),
 			dataType : "json",

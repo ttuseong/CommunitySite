@@ -7,7 +7,7 @@ $(".eventInsertBtn").on("click", function(){
 	
 	var formData = new FormData(form[0]);
 	
-	if($("input[name=boardNo]").val() == ""){
+	if($("input[name=eventNo]").val() == ""){
 		$.ajax({		
 			url : url+"/admin/eventInsert",			
 			type: "post",
@@ -84,7 +84,7 @@ $("tbody").on("click", ".deleteBtn", function(){
 	
 	$.ajax({		
 		url : url+"/admin/eventDelete",			
-		type: "post",
+		type: "delete",
        	contentType : "application/json",
 		data : JSON.stringify(formData),
 		dataType : "json",
