@@ -9,6 +9,8 @@
 			    eventLink
 			FROM
 			    event
+			where
+    			isDelete = 0	
 			order by eventNo desc
 		]]>
 	</select>
@@ -26,6 +28,8 @@
 			            imgName
 			        FROM
 			            board_img
+			        where
+    					isDelete = 0
 			        order by contentNo desc) bi)
 			where
 			    rw <= 10
@@ -38,6 +42,8 @@
 			    *
 			from 
 			    board_name
+			where
+    			isDelete = 0
 		]]>
 	</select>
 	
@@ -49,6 +55,8 @@
 			    board_name
 			where
 			    boardType=1
+			and
+    			isDelete = 0
 		]]>
 	</select>
 	
@@ -61,6 +69,8 @@
 			    adeffect
 			FROM
 			    ad
+			where
+    			isDelete = 0
 			order by adNo desc
 		]]>
 	</select>
@@ -78,6 +88,8 @@
 			        board_content
 			    where
 			        boardNo = #{boardNo}
+			    and
+    				isDelete = 0
 			    order by boardtime desc)bc
 			where
 			    rownum < 3
@@ -92,6 +104,8 @@
 			    board_content
 			where
 			    boardNo = #{boardNo}
+			and
+    			isDelete = 0
 		]]>
 	</select>
 	
@@ -114,6 +128,8 @@
 			            board_content
 			        where
 			            boardNo = #{boardNo}
+			        and
+    					isDelete = 0
 			        order by contentno desc))
 			where
 			    rw >= #{startPage}
@@ -136,6 +152,8 @@
 			    bc.contentno = bi.contentno(+)
 			and
 			    bc.contentno = #{contentNo}
+			and
+    			bc.isDelete = 0
 		]]>
 	</select>
 	
@@ -145,21 +163,24 @@
 		</selectKey>
 		<![CDATA[
 			insert into board_content
-			values(#{contentNo}, #{boardNo},#{boardContent}, sysdate, #{boardTitle})
+			values(#{contentNo}, #{boardNo},#{boardContent}, sysdate, #{boardTitle}, 0)
 		]]>
 	</insert>
 	
 	<insert id="insertImg" parameterType="map">
 		<![CDATA[
 			insert into board_img
-			values(#{contentNo}, #{imgName}, 0)
+			values(#{contentNo}, #{imgName}, 0, 0)
 		]]>
 	</insert>
 	
 	<delete id="delete" parameterType="map">
 		<![CDATA[
-			delete from board_content
-			where contentNo = ${contentNo}
+			UPDATE  board_content
+			set
+			    isDelete = 1
+			where
+			    contentno = ${contentNo}
 		]]>
 	</delete>
 	
@@ -184,13 +205,15 @@
 			    managerID = #{managerID}
 			and
 			    managerPW = #{managerPW}
+			and
+    			isDelete = 0
 		]]>
 	</select>
 	
 	<insert id="logreg" parameterType="com.project_1.vo.UserVo">
 		<![CDATA[
 			INSERT INTO manager
-			values(SQ_MANAGER.nextval, #{managerID}, #{managerPW}, #{salt})
+			values(SQ_MANAGER.nextval, #{managerID}, #{managerPW}, #{salt}, 0)
 		]]>
 	</insert>
 </mapper>

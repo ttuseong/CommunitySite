@@ -21,6 +21,8 @@
 			            boardType
 			        FROM
 			            board_name
+			        where
+			        	isDelete = 0
 			        order by boardNo desc) board) board
 			where
 			    rw >= #{startPage}
@@ -35,6 +37,8 @@
 			    count(boardNo)
 			FROM
 			    board_Name
+			where
+				isDelete = 0
 		]]>
 	</select>
 	
@@ -44,7 +48,7 @@
 		</selectKey>
 		<![CDATA[
 			INSERT into board_name
-			values (#{boardNo}, #{boardName}, #{boardType})
+			values (#{boardNo}, #{boardName}, #{boardType}, 0)
 		]]>
 	</insert>
 	
@@ -61,8 +65,11 @@
 	
 	<delete id="boardDelete" parameterType="int">
 		<![CDATA[
-			delete from board_name
-			where boardNo = #{boardNo}
+			UPDATE  board_name
+			set
+			    isDelete = 1
+			where
+			    boardNo = #{boardNo}
 		]]>
 	</delete>
 	
@@ -85,6 +92,8 @@
 			            eventName
 			        FROM
 			            event
+			        where
+			        	isDelete = 0
 			        order by eventNo desc))
 			where
 			    rw >= #{startPage}
@@ -99,6 +108,8 @@
 			    count(eventNo)
 			FROM
 			    event
+			where
+				isDelete = 0
 		]]>
 	</select>
 	
@@ -108,7 +119,7 @@
 		</selectKey>
 		<![CDATA[
 			insert into event
-			values(#{eventNo}, #{saveName}, #{eventLink}, #{eventName})
+			values(#{eventNo}, #{saveName}, #{eventLink}, #{eventName}, 0)
 		]]>
 	</insert>
 	
@@ -130,8 +141,11 @@
 	
 	<delete id="eventDelete" parameterType="int">
 		<![CDATA[
-			delete from event
-			where eventno = #{eventNo}
+			UPDATE  event
+			set
+			    isDelete = 1
+			where
+			    eventno = #{eventNo}
 		]]>
 	</delete>
 	
@@ -156,6 +170,8 @@
 			            adEffect
 			        FROM
 			            ad
+			        where
+			        	isDelete = 0
 			        order by adNo desc))
 			where
 			    rn >= #{startPage}
@@ -170,6 +186,8 @@
 			    count(adNo)
 			FROM
 			    ad
+			where
+				isDelete = 0
 		]]>
 	</select>
 	
@@ -179,7 +197,7 @@
 		</selectKey>
 		<![CDATA[
 			INSERT INTO ad
-			VALUES(#{adNo}, #{adTitle}, #{adDesc}, #{saveName}, #{adEffect})
+			VALUES(#{adNo}, #{adTitle}, #{adDesc}, #{saveName}, #{adEffect}, 0)
 		]]>
 	</insert>
 	
@@ -202,8 +220,11 @@
 	
 	<delete id="adDelete" parameterType="map">
 		<![CDATA[
-			delete from ad
-			where adno = #{adNo}
+			UPDATE  ad
+			set
+			    isDelete = 1
+			where
+			    adNo = #{adNo}
 		]]>
 	</delete>
 </mapper>
