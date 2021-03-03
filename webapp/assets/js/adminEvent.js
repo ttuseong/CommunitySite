@@ -9,7 +9,7 @@ $(".eventInsertBtn").on("click", function(){
 	
 	if($("input[name=eventNo]").val() == ""){
 		$.ajax({		
-			url : url+"/admin/eventInsert",			
+			url : url+"/admin/event/1",			
 			type: "post",
 			enctype: 'multipart/form-data',
 			processData:false,
@@ -25,7 +25,7 @@ $(".eventInsertBtn").on("click", function(){
 		}); 
 	} else{
 		$.ajax({		
-			url : url+"/admin/eventUpdate",			
+			url : url+"/admin/event/2",			
 			type: "post",
 			enctype: 'multipart/form-data',
 			processData:false,
@@ -83,7 +83,7 @@ $("tbody").on("click", ".deleteBtn", function(){
 	var formData = { eventNo : $(this).parent().prev().prev().prev().prev().text() }
 	
 	$.ajax({		
-		url : url+"/admin/eventDelete",			
+		url : url+"/admin/event",			
 		type: "delete",
        	contentType : "application/json",
 		data : JSON.stringify(formData),

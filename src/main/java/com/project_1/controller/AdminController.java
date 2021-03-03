@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +29,7 @@ public class AdminController {
 		return "adminBoard";
 	}
 	
-	@RequestMapping(value = "/boardInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/board", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> boardInsert(@RequestBody Map<String, Object> formData) {
 		adminService.InsertBoard(formData);
@@ -36,7 +37,7 @@ public class AdminController {
 		return formData;
 	}
 	
-	@RequestMapping(value = "/boardUpdate", method = RequestMethod.PUT)
+	@RequestMapping(value = "/board", method = RequestMethod.PUT)
 	@ResponseBody
 	public Map<String, Object> BoardUpdate(@RequestBody Map<String, Object> formData) {
 		adminService.UpdateBoard(formData);
@@ -44,7 +45,7 @@ public class AdminController {
 		return formData;
 	}
 	
-	@RequestMapping(value = "/boardDelete", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/board", method = RequestMethod.DELETE)
 	@ResponseBody
 	public int boardDelete(@RequestBody Map<String, Object> formData) {
 		return adminService.DeleteBoard(formData);
@@ -57,21 +58,18 @@ public class AdminController {
 		return "adminEvent";
 	}
 	
-	@RequestMapping(value = "/eventInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/event/{no}", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> eventInsert(@RequestParam("eventName") String eventName, @RequestParam("eventLink") String eventLink, @RequestParam("eventImg") MultipartFile eventImg) {
-		return adminService.InsertEvent(eventName, eventLink, eventImg);
-	}
-	
-	@RequestMapping(value = "/eventUpdate", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> eventUpdate(@RequestParam("eventNo") int eventNo, @RequestParam("eventName") String eventName, @RequestParam("eventLink") String eventLink, @RequestParam(value="eventImg", required=false) MultipartFile eventImg) {
-		System.out.println(eventNo);
+	public Map<String, Object> eventInsert(@PathVariable("no") int no, @RequestParam(value = "eventNo", required = false, defaultValue = "-1") int eventNo, @RequestParam("eventName") String eventName, @RequestParam("eventLink") String eventLink, @RequestParam("eventImg") MultipartFile eventImg) {
+		if(no == 1) {
+			return adminService.InsertEvent(eventName, eventLink, eventImg);
+		} else {
+			return adminService.UpdateEvent(eventNo, eventName, eventLink, eventImg);
+		}
 		
-		return adminService.UpdateEvent(eventNo, eventName, eventLink, eventImg);
 	}
-	
-	@RequestMapping(value = "/eventDelete", method = RequestMethod.DELETE)
+
+	@RequestMapping(value = "/event", method = RequestMethod.DELETE)
 	@ResponseBody
 	public int EventDelete(@RequestBody Map<String, Object> formData) {
 		
@@ -85,26 +83,21 @@ public class AdminController {
 		return "adminAD";
 	}
 	
-	@RequestMapping(value = "/adInsert", method = RequestMethod.POST)
+	@RequestMapping(value = "/ad/{no}", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> adInsert(@RequestParam("adTitle") String adTitle, @RequestParam("adDesc") String adDesc, 
+	public Map<String, Object> adInsert(@PathVariable("no") int no, @RequestParam(value="adNo", required = false, defaultValue = "-1") int adNo, @RequestParam("adTitle") String adTitle, @RequestParam("adDesc") String adDesc, 
 				@RequestParam("adEffect") int adEffect, @RequestParam("adImg") MultipartFile adImg){
 
-		return adminService.adInsert(adTitle, adDesc, adEffect, adImg);
+		if(no == 1) {
+			return adminService.adInsert(adTitle, adDesc, adEffect, adImg);
+		} else {
+			return adminService.adUpdate(adNo, adTitle, adDesc, adEffect, adImg);
+		}
 	}
 	
-	@RequestMapping(value = "/adUpdate", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Object> adUpdate(@RequestParam("adNo") int adNo, @RequestParam("adTitle") String adTitle, @RequestParam("adDesc") String adDesc, 
-			@RequestParam("adEffect") int adEffect, @RequestParam(value="adImg", required=false) MultipartFile adImg){
-		
-		return adminService.adUpdate(adNo, adTitle, adDesc, adEffect, adImg);
-	}
-	
-	@RequestMapping(value = "/adDelete", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/ad", method = RequestMethod.DELETE)
 	@ResponseBody
 	public int adDelete(@RequestBody Map<String, Object> formData) {
-		System.out.println(formData.get("adNo"));
 		return adminService.adDelete(formData);
 	}
 }

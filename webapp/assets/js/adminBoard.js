@@ -8,7 +8,7 @@ $(".boardInsertBtn").on("click", function(){
 		var formData = {boardName : $("input[name=boardName]").val(), boardType : Number($("input[name=boardType]:checked").val())}
 		
 		$.ajax({		
-			url : url+"/admin/boardInsert",			
+			url : url+"/admin/board",			
 			type: "post",
 	       	contentType : "application/json",
 			data : JSON.stringify(formData),
@@ -26,7 +26,7 @@ $(".boardInsertBtn").on("click", function(){
 		boardNo : Number($("input[name=boardNo]").val())}
 		
 		$.ajax({		
-			url : url+"/admin/boardUpdate",			
+			url : url+"/admin/board",			
 			type: "put",
 	       	contentType : "application/json",
 			data : JSON.stringify(formData),
@@ -91,7 +91,7 @@ $("tbody").on("click", ".deleteBtn", function(){
 	var formData = { boardNo : $(this).parent().prev().prev().prev().text() }
 	
 	$.ajax({		
-		url : url+"/admin/boardDelete",			
+		url : url+"/admin/board",			
 		type: "delete",
        	contentType : "application/json",
 		data : JSON.stringify(formData),

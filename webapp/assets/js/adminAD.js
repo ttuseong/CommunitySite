@@ -8,7 +8,7 @@ $(".adInsertBtn").on("click", function(){
 	
 	if($("input[name=adNo]").val() == ""){
 		$.ajax({		
-			url : url+"/admin/adInsert",			
+			url : url+"/admin/ad/1",			
 			type: "post",
 			enctype: 'multipart/form-data',
 			processData:false,
@@ -24,7 +24,7 @@ $(".adInsertBtn").on("click", function(){
 		}); 
 	} else{
 		$.ajax({		
-			url : url+"/admin/adUpdate",			
+			url : url+"/admin/ad/2",			
 			type: "post",
 			enctype: 'multipart/form-data',
 			processData:false,
@@ -90,7 +90,7 @@ $("tbody").on("click", ".deleteBtn", function(){
 	var formData = { adNo : thisTarget.parent().prev().prev().prev().prev().prev().text() }
 
 	$.ajax({		
-		url : url+"/admin/adDelete",			
+		url : url+"/admin/ad",			
 		type: "delete",
        	contentType : "application/json",
 		data : JSON.stringify(formData),

@@ -34,7 +34,7 @@ public class MainController {
 	}
 
 	//게시글 목록
-	@RequestMapping(value="list", method = RequestMethod.GET)
+	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public String list(Model model, @RequestParam("boardNo") int boardNo, HttpSession session,
 			@RequestParam(value="cntPage", required=false, defaultValue="1") int cntPage) {
 		checkMenuSession(session);
@@ -65,7 +65,7 @@ public class MainController {
 	}
 	
 	//db에 정장될 내용을 전송하고 목록으로 이동하는 메소드
-	@RequestMapping(value="/write", method=RequestMethod.POST)
+	@RequestMapping(value="/list", method=RequestMethod.POST)
 	public String write(HttpSession session,Model model ,@ModelAttribute ContentVo contentVo,
 			@RequestParam(value="file", required = false) MultipartFile file) {
 		checkMenuSession(session);
@@ -76,7 +76,7 @@ public class MainController {
 		return "redirect:/list";
 	}
 
-	@RequestMapping(value="/delete", method = RequestMethod.DELETE)
+	@RequestMapping(value="/list", method = RequestMethod.DELETE)
 	@ResponseBody
 	public int delete(@RequestBody  Map<String, Object> formData) {
 		

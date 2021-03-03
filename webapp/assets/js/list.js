@@ -5,7 +5,7 @@ $(".listDelete").on("click", function(){
 	var formData = {contentNo : Number($(this).parent().prev().prev().prev().text())}
 
 	$.ajax({		
-			url : url+"/delete",			
+			url : url+"/list",			
 			type: "delete",
            	contentType : "application/json",
 			data : JSON.stringify(formData),

@@ -46,7 +46,7 @@
 					<p class="cbox-desc">웹 백엔드와 관련된 정보 공유</p>
 					<div id="board">
 						<div id="writeForm">
-							<form action="${pageContext.request.contextPath}/write" method="post" enctype="multipart/form-data">
+							<form action="${pageContext.request.contextPath}/list" method="post" enctype="multipart/form-data">
 								<!-- 제목 -->
 								<div class="form-group">
 									<label class="form-text" for="txt-title">제목</label> <input
