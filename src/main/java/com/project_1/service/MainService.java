@@ -170,7 +170,7 @@ public class MainService {
 		mainDao.logreg(userVo);
 	}
 	
-	public void changePW(UserVo userVo) {
+	public void changePW(UserVo userVo) {		
 		try {
 			byte[] bytes1 = (userVo.getManagerPW()).getBytes();
 			byte[] bytes2 = new byte[bytes1.length + userVo.getSalt().getBytes().length];
