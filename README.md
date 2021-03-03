@@ -110,4 +110,5 @@ preHandle과 postHandle을 통해 처리가 가능합니다. preHandle는 contro
 변경된 쿼리
   
 ![zhem](https://user-images.githubusercontent.com/38309884/109603634-69b03100-7b65-11eb-800f-5069cf6afe2e.PNG)
+  
 모든 쿼리문에도 미리 삭제를 판단하기 때문에 isDelete 값을 확인하는 내용을 추가했습니다.
