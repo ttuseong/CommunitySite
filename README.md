@@ -50,12 +50,16 @@ SSL은 클라이언트와 서버 간의 통신을 공인된 제 3자(CA) 업체�
 톰캣에서 https를 사용하기 위해 넣어준 세팅입니다.
 세팅 후 이클립스에서 톰캣 설정을 보면 포트에 SSL이 바로 추가가 안 됩니다. 이 경우 톰캣을 다시 등록하면 설정한 SSL이 추가되는 것을 확인할 수 있습니다.
 ![http로 시도할 경우](https://user-images.githubusercontent.com/38309884/109755643-b2c9b900-7c29-11eb-8f54-a630ebbe7d01.PNG)
+  
 https로 설정한 포트가 443번인데 http로 접근을 시도할 경우 나타나는 메시지입니다.
 ![https 첫 시도](https://user-images.githubusercontent.com/38309884/109755644-b2c9b900-7c29-11eb-940c-a41cce6dea4b.PNG)
 https로 시도할 경우 연결이 비공개로 설정되어 있지 않습니다라는 내용이 보이고, 안전하지 않음(으)로 이동 버튼을 클릭할 경우 이동할 수 있습니다.
+  
 ![https_asdasd](https://user-images.githubusercontent.com/38309884/109755645-b3624f80-7c29-11eb-88d6-2fe1b38074d6.png)
+  
 이동 후 URL을 확인하면 다음과 같이 경고 표시가 나온 것을 확인할 수 있습니다.
 ![인증서](https://user-images.githubusercontent.com/38309884/109755648-b3624f80-7c29-11eb-807f-c57265ac2cc8.PNG)
+  
 인증서를 확인할 경우 위에 사진과 같은 내용을 확인할 수 있습니다. 이렇게 나타난 이유는 SSL의 통신 방식에서 CA에서 발급된 인증서인지 확인하는 과정이 있는데 그 부분에 대한 세팅을 안 해서 나타난 것으로 예상됩니다. 추후 무료로 이용할 수 있는 CA를 찾은 후 그다음 작업을 진행할 계획입니다.
 
 
@@ -69,8 +73,10 @@ DB에 저장된 내용을 보면 회원가입을 통해 입력한 내용하고 �
 ## 접근 제한
 현재 페이지 이동은 a 태그와 button 태그를 통해 이루어지는데 만약 URL을 안다면 브라우저에 URL을 입력하여 원하는 위치로 이동할 수 있습니다. 그럼 만약 일반 사용자가 관리자 페이지 URL을 입력할 경우 관리자 페이지에 들어올 수 있기 때문에 관리자가 아닌 사용자의 접근을 막았습니다.
 ![인터셉터](https://user-images.githubusercontent.com/38309884/109610560-43dc5980-7b70-11eb-9dd6-7b393b76e989.PNG)
+  
 특정 경로로 접근할 경우 미리 설정된 클래스가 실행되게 spring-servlet.xml에 설정합니다.
 ![인터셉0](https://user-images.githubusercontent.com/38309884/109610564-4474f000-7b70-11eb-816e-c4f7d2f96e27.PNG)
+  
 preHandle과 postHandle을 통해 처리가 가능합니다. preHandle는 controller로 보내기 전에 처리하고 postHandle은 controller의 handler가 끝나면 처리됩니다.
   
 접근을 막기위해 설정했기 때문에 preHandle에 내용을 추가했습니다. 현재 로그인 기능이 관리자 로그인 뿐이기 때문에 로그인 여부를 통해 판단을 했지만, 일반 사용자 로그인과 관리자 로그인이 나누어진 경우면 DB에 그 정보를 저장하는 컬럼을 추가하고 그 정보를 통해 막으면 될 것으로 예상합니다.
@@ -94,9 +100,12 @@ preHandle과 postHandle을 통해 처리가 가능합니다. preHandle는 contro
 이 부분을 해결하기 위해 테이블에 삭제를 판단하는 컬럼을 추가하여 삭제되었는지만 판단하고 실제 데이터는 남아있는 방식을 생각하게 되었습니다.
   
 변경 전 테이블
+  
 ![전](https://user-images.githubusercontent.com/38309884/109602869-49cc3d80-7b64-11eb-86b9-271d3eb272d1.png)
 변경 후 테이블
+  
 ![후](https://user-images.githubusercontent.com/38309884/109602873-4a64d400-7b64-11eb-82e2-7a5bc683e617.png)
 변경된 쿼리
+  
 ![zhem](https://user-images.githubusercontent.com/38309884/109603634-69b03100-7b65-11eb-800f-5069cf6afe2e.PNG)
 모든 쿼리문에도 미리 삭제를 판단하기 때문에 isDelete 값을 확인하는 내용을 추가했습니다.
